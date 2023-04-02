@@ -1,0 +1,91 @@
+@import url("../index.style.css");
+
+
+.otp-section {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--PrimaryColor);
+  z-index: 0;
+  opacity: 0;
+}
+
+.container {
+  background-color: var(--SecondColor);
+  width: 90%;
+  max-width: 500px;
+  padding: 40px 20px;
+  text-align: center;
+}
+.title {
+  
+  margin-bottom: 5px;
+  text-align: center;
+}
+#otp-form {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.inputs{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+#otp-form input {
+  border: none;
+  background-color: var(--SecondColor);
+  color: white;
+  font-size: 32px;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  max-width: 70px;
+  height: 50px;
+  outline: 2px solid var(--PrimaryColor);
+  margin-top: 5px;
+}
+#otp-form input:focus-visible {
+  outline: 2px solid var(--fourthColor);
+}
+#otp-form input.filled {
+  outline: 2px solid rgb(7, 192, 99);
+}
+
+#verify-btn{
+    width: 8em;
+    height: 50px;
+    background-color: var(--PrimaryColor);
+    color: var(--SecondColor);
+    font-size: 15px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    border: 2px solid transparent;
+}
+  
+#verify-btn:hover {
+    background-color: var(--SecondColor);
+    color: var(--PrimaryColor);
+    border: 2px solid var(--PrimaryColor);
+}
+#resend-btn{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: 0.3s ;
+}
+#resend-btn:hover{
+    color: var(--fourthColor);
+}
+

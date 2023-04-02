@@ -1,0 +1,502 @@
+@import url('./index.style.css');
+
+::-webkit-scrollbar{
+  width: 0;
+}
+body{
+  background-color: #000000;
+}
+.Landing-Page{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.video1{
+  position: absolute;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+@media (min-aspect-ratio: 16/9) {
+  .video1{
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  .video1{
+    width: auto;
+    height: 100%;
+  }
+}
+/*----------------------------------------------------*/
+
+header{
+  position: absolute;
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 80px;
+  z-index: 3; 
+}
+.Logo{
+z-index: 3;
+}
+.logo{
+display: none;
+cursor: pointer;
+}
+
+header img{
+  width: 12vmax;
+}
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vmax;
+  overflow-x: hidden;
+}
+nav ul{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 50%;
+}
+nav a{
+  color: var(--PrimaryColor) ;
+}
+nav a{
+position: relative;
+overflow: hidden;
+color: var(--SecondColor);
+}
+nav a::after{
+position: absolute;
+content: '';
+width: 0%;
+height: 15%;
+background-color: var(--SecondColor);
+bottom: 0;
+right: 0%;
+transition: 0.3s;
+}
+nav a:hover::after{
+left: 0;
+width: 100%;
+}
+
+.Log_in, .Sign_in{
+  position: relative;
+  padding: .5em .6em;
+  cursor: pointer;
+  background-color: var(--SecondColor);
+  color: var(--PrimaryColor);
+  margin: 0 5px;
+  transition: 0.3s;
+  border: none;
+}
+.Log_in:hover, .Sign_in:hover{
+color: var(--SecondColor);
+background-color: var(--PrimaryColor);
+}
+.fa-bars{
+display: none;
+z-index: 3;
+}
+/*-----*/
+.settings, .Log_out{
+  background-color:transparent;
+  position: relative;
+  padding: .7em .8em;
+  cursor: pointer;
+  color: var(--SecondColor);
+  margin: 0 5px;
+  transition: 0.3s;
+  border: none;
+}
+.settings:hover, .Log_out:hover{
+  background-color: var(--SecondColor);
+  color: var(--PrimaryColor);
+}
+.logout{
+  position: relative;
+  left: 10%;
+}
+@media screen and (max-width:767px){
+header{
+ z-index: 100;
+}
+header img{
+  width: 15vmax;
+ }
+.fa-bars{
+  position: relative;
+  display: block;
+  left: 10%;
+  font-size: 25px;
+  color: var(--SecondColor);
+  cursor: pointer;
+  z-index: 200;
+}
+nav{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--PrimaryColor);
+  left: 100%;
+  top: 10%;
+  opacity: 0;
+  width: 0%;
+  height: 90vh;
+  padding: 0 10px;
+  padding-top: 10px;
+  padding-bottom: 100px;
+  font-size: 18px;
+  transition: 0.5s ;
+  overflow: hidden;
+  z-index: 4;
+}
+nav ul{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 18px;
+  transition: 0.5s ;
+}
+.Slideing{
+  opacity: 1;
+  left: 50%;
+  width: 50%;
+}
+nav form {
+  align-self: center;
+}
+nav button{
+  background-color: var(--SecondColor);
+  color: var(--PrimaryColor);
+
+}
+nav button:hover{
+  background-color: var(--PrimaryColor);
+  color: var(--SecondColor);
+}
+nav a{
+  color: var(--SecondColor);
+}
+nav a::after{
+  display: none;
+}
+nav ul li{
+  margin-left: 10px;
+  transition: .5s;
+}
+nav ul li:hover{
+  margin-left: 20px;
+}
+.logo{
+  display: flex;
+}
+}
+
+/*--------------------------------------------------*/
+main{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+.main-content{
+  position: relative;
+  width: 90%;
+  height: 80%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--SecondColor);
+  overflow-x: hidden;
+}
+.main-content h1{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-size: 10vmax;
+  text-align: center;
+  margin-top: 10px;
+  z-index: 3;
+}
+.input-group {
+  width: 50.4%;
+  height: 20%;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.input {
+  min-height: 50px;
+  width: 80%;
+  padding: 0 1rem;
+  color: var(--PrimaryColor);
+  font-size: 15px;
+  border: 1px solid var(--SecondColor);
+  background-color: transparent;
+  background-color: var(--SecondColor);
+}
+.input::placeholder{
+  font-size: .8em;
+}
+.button--submit {
+  width: 8em;
+  height: 50px;
+  border: none;
+  background-color: var(--SecondColor);
+  color: var(--PrimaryColor);
+  font-size: 15px;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+.button--submit:hover {
+  background-color: var(--PrimaryColor);
+  color: var(--SecondColor);
+}
+
+.input:focus, .input:focus-visible {
+  border-color: var(--PrimaryColor);
+  outline: none;
+}
+
+/*--------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+.help-page{
+  width: 100%;
+  height: fit-content;
+  background-color: var(--PrimaryColor);
+  overflow-x: hidden;
+  margin: 100px 0;
+}
+.title{
+  width: 100%;
+  font-size: 5vmax;
+  text-align: center;
+  color: var(--SecondColor);
+  padding:  0 20px;
+  opacity: 0;
+  transition: 4s;
+}
+.active1{
+  opacity: 1;
+}
+.container {
+  position: relative;
+    width: 100%;
+    height: max-content;
+    padding:  2% 10%;
+    color: var(--PrimaryColor);
+    overflow: hidden;
+    opacity: 0;
+    transition: 5s;
+}
+
+.active2{
+  opacity: 1;
+}
+/* utilities */
+.flex {
+    display: flex;
+    align-items: center;
+}
+.flex * {
+    margin-top: 0;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+/* general  */
+hgroup {
+    margin-left: 1em;
+}
+.testimonal-card {
+    position: relative;
+    background-color: var(--SecondColor);
+    color: var(--SecondColor);
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 1s;
+    overflow: hidden;
+}
+
+.video2, .video3, .video4{
+  position: absolute;
+  width: fit-content;
+  z-index: 1;
+}
+.testimonal-card h1{
+  color: var(--PrimaryColor);
+  font-size: 25px;
+  z-index: 2;
+}
+.testimonal-card p{
+ text-align: center;
+ z-index: 2;
+}
+.testimonal-card:first-child {  
+     color: var(--PrimaryColor);
+    /* style to control the postioning of this card */
+    grid-column: 1/3;
+  
+}
+.testimonal-card:last-child{
+  grid-column:1/4;
+  color: var(--PrimaryColor);
+}
+.testimonal-card:nth-child(2) {
+  color: var(--PrimaryColor);
+}
+
+/* mobile veiw of max-width 375px == 23.4375em, 750 = 46.875em */
+@media (max-width: 23.4375em) {
+    .grid {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+    .grid > * {
+        margin-top: 20px;
+    }
+    .testimonal-card:first-child {
+        background-position: right 10px top 10px;
+    }
+}
+@media (max-width: 50.4375em) {
+  .grid {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+  }
+  .grid > * {
+      margin-top: 20px;
+  }
+  .testimonal-card:first-child {
+      background-position: right 10px top 10px;
+  }
+}
+
+/*--------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+
+.Sell{
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 50px;
+  color: var(--SecondColor);
+  margin: 100px 0;
+}
+.Sell h1{
+  font-size: 30px;
+}
+.Sell button{
+  padding: 10px 20px;
+  background-color: var(--SecondColor);
+  color: var(--PrimaryColor);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.Sell button:hover{
+  background-color:transparent;
+  color: var(--SecondColor);
+  border: 1px solid var(--SecondColor);
+}
+
+.video5{
+  position: fixed;
+  left: 30%;
+  top: 10%;
+  width: 40%;
+}
+/*--------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+.About-Utopia{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+  color: var(--SecondColor);
+  padding: 50px 0;
+  overflow: hidden;
+}
+.About-Utopia h1{
+  width: 100%;
+  font-size: 10vmax;
+  text-align: center;
+
+}
+.About-text{
+  padding: 0 10%;
+ 
+}
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+footer{
+  width: 100%;
+  height: 50vh;
+  background-color: var(--PrimaryColor);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+}
+
+.footer-content{
+  display: grid;
+  place-content: center;
+  width: 80%;
+  height: fit-content;
+  background-color: var(--SecondColor);
+  overflow: hidden;
+  padding-top: 50px;
+  z-index: 10;
+}
+.footer-content img{
+  width: 100%;
+}
+.footer-text{
+  width: 80%;
+  background-color: var(--SecondColor);
+  z-index: 10;
+}
+
