@@ -8,7 +8,7 @@ class Login{
 
        include 'db_PDS.class.php';
 
-       $sql = "SELECT * FROM users WHERE user_name = ? OR user_email = ?;";
+       $sql = "SELECT * FROM users WHERE user_email = ?;";
        //create a  Prepared Statement
        $stmt = mysqli_stmt_init($conn);
 
@@ -21,7 +21,7 @@ class Login{
        else{
            //Bind Param
            
-           mysqli_stmt_bind_param($stmt, "ss", $Uemail, $Uemail);
+           mysqli_stmt_bind_param($stmt, "s", $Uemail);
 
            //Execute the Prepared Statement inside database
            mysqli_stmt_execute($stmt);
@@ -44,7 +44,7 @@ class Login{
                         session_start();
                         $_SESSION['UserId']  = $row['user_id'];
                         $_SESSION['UserName'] = $row['user_name'];
-                
+                        $_SESSION['UserEmail'] = $row['user_email'];
                         header("Location: ../index.php?Welcome". $row['user_name']);
                         exit();
                    }

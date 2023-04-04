@@ -8,3 +8,6 @@ if(isset($_GET['Log_out'])){
   header("Location: ../index.php?error=none");
 }
  
+if(isset($_GET['settings'])){
+  header("Location: ../UserPage/userpage_index.php?profile=");
+}

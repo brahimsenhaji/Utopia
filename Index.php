@@ -37,8 +37,9 @@
                     <?php 
                         if(isset($_SESSION['UserId']))
                         {
-                          echo  '<button name="settings" class="settings" value="setting"><i class="fa-regular fa-user"></i></button>';
-                          echo  '<button name="Log_out" class="Log_out" value="out"><i class="fa-solid fa-right-from-bracket"></i></i></button>';
+                          echo  '<button name="settings" class="settings"><i class="fa-regular fa-user"></i></button>';
+                          echo  '<button name="Log_out" class="Log_out"><i class="fa-solid fa-right-from-bracket"></i></i></button>';
+
                         }
                         ?>
                 </form>        
@@ -54,7 +55,6 @@
                             if(isset($_GET['Sign_up'])){
                                 header("Location: ./sign-in-up_page/sign_Index.php?Sign_up");
                             }
-                          
                         }
                     ?>
                 </form>

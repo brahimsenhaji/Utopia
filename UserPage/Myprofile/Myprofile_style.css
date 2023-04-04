@@ -1,0 +1,59 @@
+@import url("../index.style.css");
+.s-layout__content h1{
+    width: 100%;
+    padding-left: 20px;
+    margin-top: 20px;
+ }
+ .s-layout__content form{
+   position: absolute;  
+   gap: 20px;
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   left: 25%;
+   z-index: 10;
+   margin-top: 10px;
+ }
+ form .inputs{
+     display: flex;
+     flex-direction: column;
+     flex-wrap: wrap;
+     width: 40%;
+     margin: 5px;
+ }
+ form input{
+     background-color: transparent;
+     border: none;
+     border-bottom: 1px solid var(--PrimaryColor);
+ }
+ form input:focus{
+     outline: none;
+ }
+ form .buttons{
+     width: 40%;
+     display: flex;
+     flex-direction: row;
+ }
+ form button{
+     padding: 6px 10px;
+     background-color: var(--PrimaryColor);
+     color: var(--SecondColor);
+     border: none;
+     cursor: pointer;
+     margin: 8px 5px;
+     transition: 0.3s;
+ }
+ .update:hover{
+     background-color: var(--SecondColor);
+     color: var(--PrimaryColor);
+ }
+ .cancel{
+     background-color: var(--SecondColor);
+     color: var(--PrimaryColor);
+ }
+ .cancel:hover{
+     background-color: var(--PrimaryColor);
+     color: var(--SecondColor);
+ }
+ 

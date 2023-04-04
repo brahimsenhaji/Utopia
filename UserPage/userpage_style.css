@@ -1,0 +1,123 @@
+@import url("../index.style.css");
+@import url('./Myprofile/Myprofile_style.css');
+@import url('./Password/password_style.css');
+body{
+    font-family: var(--Primaryfont);
+    overflow: hidden;
+    background-color: var(--SecondColor);
+}
+ 
+ a {
+    text-decoration: none;
+    color: inherit;
+ } 
+ 
+ /* Layout */
+ .s-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+ }
+ 
+  
+ /* Sidebar */
+.s-sidebar__trigger {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4em;
+    background: var(--PrimaryColor);
+}
+ 
+.s-sidebar__trigger > i {
+    display: inline-block;
+    margin: 1em 0 0 1.5em;
+    color: #fff;
+    display: none;
+    font-size: 20px;
+}
+ 
+.s-sidebar__nav {
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition: all .3s ease-in;
+    width: 12em;
+    height: 100%;
+    background-color: var(--PrimaryColor);
+    color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+ 
+.s-sidebar__nav form {
+    position: absolute;
+    top: 4em;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 15em;
+    padding-left: 10px;
+
+}
+.s-sidebar__nav form button{
+    width: 100%;
+    padding: 20px 10px;
+    font-size: 20px;
+    background-color: var(--PrimaryColor);
+    color: var(--SecondColor);
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px ;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.s-sidebar__nav form button:hover{
+    background-color: var(--SecondColor);
+    color: var(--PrimaryColor);
+}
+.listhover{
+    background-color: var(--SecondColor);
+    color: var(--PrimaryColor);
+}
+
+
+.s-layout__content {
+    overflow: hidden;
+    width: 100%;
+    height: 90vh;
+    margin-top: 10vh;
+}
+
+/* mobile veiw of max-width 375px == 23.4375em, 750 = 46.875em */
+@media (max-width: 23.4375em) {
+    .s-sidebar__nav{
+        width: 4em;
+    }
+    .s-sidebar__nav form button{
+        margin-left: 5px;
+    }
+    .s-sidebar__nav form button span{
+        display: none;
+    }
+
+
+}
+@media (max-width: 50.4375em) {
+    .s-sidebar__nav{
+        width: 4em;
+    }
+    .s-sidebar__nav form button{
+        margin-left: 5px;
+    }
+    .s-sidebar__nav form button span{
+        display: none;
+    }
+    .s-layout__content{
+
+    }
+}
+ 
+

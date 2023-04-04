@@ -125,7 +125,7 @@ include '../Includes/autoloader_classses.php';
 
                 <div class="input-wrap">
                     <input
-                      type="text"
+                      type="tel"
                       class="input-field"
                       autocomplete="off"
                       required
