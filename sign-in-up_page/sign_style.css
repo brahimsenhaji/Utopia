@@ -143,7 +143,9 @@ label {
   font-size: 0.75rem;
   top: -2px;
 }
-
+.fa-eye{
+ position: relative;
+}
 .sign-btn {
   display: inline-block;
   width: 100%;
@@ -211,7 +213,6 @@ main.sign-up-mode .carousel {
 }
 
 .video1{
-    position: absolute;
     width: 100%;
     z-index: 1;
 }
@@ -266,6 +267,7 @@ main.sign-up-mode .carousel {
     width: 100%;
     padding: 3rem 2rem;
     display: flex;
+    
   }
 
   .images-wrapper {

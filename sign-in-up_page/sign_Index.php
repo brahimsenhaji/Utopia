@@ -77,8 +77,8 @@ include '../Includes/autoloader_classses.php';
                     name="password"
                   />
                   <label>Password</label>
+                  
                 </div>
-
                 <input type="submit" value="Sign In" class="sign-btn" id="sign-in-btn" name="sign-in-btn"/>
 
                 <p class="text">

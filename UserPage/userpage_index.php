@@ -38,7 +38,12 @@
                     include "./Password/password_index.php";
                   }
                   if(isset($_GET['logout'])){
-                    header("Location: ../index.php");
+                    session_start();
+                    session_unset();
+                    session_destroy();
+                  
+                    
+                    header("Location: ../index.php?error=none");
                   }
                 ?>
             </main>
