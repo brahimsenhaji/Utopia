@@ -218,19 +218,19 @@ main.sign-up-mode .carousel {
 }
 
 .goHome{
-  position: fixed;
+  position: absolute;
   left: 2%;
   top: 5%;
   width: 150px;
   overflow: hidden;
 }
-.goHome button{
+.goHome a{
   cursor: pointer;
   background-color: transparent;
   border: none;
   color: var(--SecondColor);
 }
-.goHome button:hover{
+.goHome a:hover{
   text-decoration: underline;
 }
 
