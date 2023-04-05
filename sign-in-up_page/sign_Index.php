@@ -33,10 +33,12 @@ include '../Includes/autoloader_classses.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign in & Sign up Form</title>
     <link rel="shortcut icon" type="image/x-icon" href="./Images/Logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./sign_style.css" />
   </head>
   <body>
     <main>
+      <a href="../Index.php" class="goHome"><button class="btn">Go Home</button></a>
       <?php
        require '../OTP/otp_index.php'; 
       ?>

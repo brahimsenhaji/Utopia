@@ -217,6 +217,22 @@ main.sign-up-mode .carousel {
     z-index: 1;
 }
 
+.goHome{
+  position: fixed;
+  left: 2%;
+  top: 5%;
+  width: 150px;
+  overflow: hidden;
+}
+.goHome button{
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: var(--SecondColor);
+}
+.goHome button:hover{
+  text-decoration: underline;
+}
 
 @media (max-width: 850px) {
   .box {
@@ -262,12 +278,7 @@ main.sign-up-mode .carousel {
   }
 
   .carousel {
-    position: revert;
-    height: auto;
-    width: 100%;
-    padding: 3rem 2rem;
-    display: flex;
-    
+    display: none;
   }
 
   .images-wrapper {
@@ -289,7 +300,7 @@ main.sign-up-mode .carousel {
   }
 
   .carousel {
-    padding: 1.5rem 1rem;
+    display: none;
   }
 
   .text-wrap {
