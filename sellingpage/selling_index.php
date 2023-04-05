@@ -44,10 +44,10 @@
                             echo '<button name="Sign_up" class="Sign_in" value="Sign">Sign up</button>' ;
 
                             if(isset($_GET['Sign_in'])){
-                                header("Location: ./sign-in-up_page/sign_Index.php?Sign_in");
+                                header("Location: ../sign-in-up_page/sign_Index.php?Sign_in");
                             }
                             if(isset($_GET['Sign_up'])){
-                                header("Location: ./sign-in-up_page/sign_Index.php?Sign_up");
+                                header("Location: ../sign-in-up_page/sign_Index.php?Sign_up");
                             }
                         }
                     ?>

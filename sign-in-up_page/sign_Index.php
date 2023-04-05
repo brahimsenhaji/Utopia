@@ -38,7 +38,7 @@ include '../Includes/autoloader_classses.php';
   </head>
   <body>
     <main>
-      <a href="../Index.php" class="goHome">Go Home</a>
+      <div class="goHome"> <i class="fa-solid fa-regular fa-arrow-left"></i> <a href="../Index.php">Go Home</a></div>
       <?php
        require '../OTP/otp_index.php'; 
       ?>

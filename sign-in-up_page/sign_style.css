@@ -223,15 +223,16 @@ main.sign-up-mode .carousel {
   top: 5%;
   width: 150px;
   overflow: hidden;
+  z-index: 1000;
+  color: var(--SecondColor);
+  cursor: pointer;
 }
 .goHome a{
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
   color: var(--SecondColor);
+  transition: 0.3s ease-in-out;
 }
 .goHome a:hover{
-  text-decoration: underline;
+  margin-left: 5px;
 }
 
 @media (max-width: 850px) {

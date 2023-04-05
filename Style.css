@@ -34,7 +34,7 @@ body{
 /*----------------------------------------------------*/
 
 header{
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 15vh;
   display: flex;
@@ -206,7 +206,7 @@ nav ul li:hover{
 
 /*--------------------------------------------------*/
 main{
-    height: 90vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -215,7 +215,7 @@ main{
 .main-content{
   position: relative;
   width: 90%;
-  height: 80%;
+  height: 70%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
