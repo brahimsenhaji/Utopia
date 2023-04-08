@@ -29,7 +29,7 @@
                     </div>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Buy</a></li>
-                    <li><a href="./sellingpage/selling_index.php">Sell</a></li>
+                    <li><a href="./listingpage/listing_index.php">Sell</a></li>
                     <li><a href="#">Rent</a></li>
                     <li><a href="#">Help</a></li>
                 </ul>
