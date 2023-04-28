@@ -1,18 +1,232 @@
 @import url("../index.style.css");
+@import url('../Navbar_Style.css');
+header{
+    width: 100%;
+    height: 10vh;
+    background-color: var(--PrimaryColor);
+}
 
 main{
     width: 100%;
-    height: 100vh;
+    height: fit-content;
     display: flex;
     justify-content: center;
 }
 main section{
-    width: 50%;
-   
+    width: 50vw;
+    padding: 50px  0; 
 }
-
+.form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    grid:50px ;
+}
+#logout{
+  display: flex;
+  position: relative;
+  left: 0;
+}
 .input-wrap{
     display: flex;
     flex-direction: column;
+    margin: 10px 0;
 }
+.input-wrap input{
+  padding: 2px 0;
+  border: none;
+  border: 1px solid var(--PrimaryColor);
+}
+.input-wrap input:focus{
+    outline: none;
+}
+.input-wrap select{
+  padding: 5px 0;
+  border: none;
+  border: 1px solid var(--PrimaryColor);
+}
+.input-wrap select:focus{
+    outline: none;
+}
+.input-wrap label{
+    padding: 2px 0;
+}
+.container {
+    width: 100%;
+    padding: 30px;
+    background: var(--SecondColor);
+  }
+  .wrap{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  @media screen and (max-width: 768px) {
+    .wrap{
+      grid-template-columns: repeat(1,1fr);
+    }
+  }
+  .drag-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px auto;
+  }
+  
+  h3 {
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  
+  .drag-area .icon {
+    font-size: 50px;
+    color: var(--PrimaryColor);
+  }
+  
+  .drag-area .header {
+    font-size: 20px;
+    font-weight: 500;
+    color: #34495e;
+  }
+  
+  .drag-area .support {
+    font-size: 12px;
+    color: gray;
+    margin: 10px 0 15px 0;
+  }
+  
+  .drag-area .SelectImage {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1683ff;
+    cursor: pointer;
+  }
+  
 
+  
+  .drag-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  
+  @media screen and (max-width: 768px) {
+    .container {
+      padding: 20px;
+      border-radius: 10px;
+    }
+  
+    .drag-area {
+      height: 300px;
+      margin: 5px auto;
+    }
+  
+    .drag-area .icon {
+      font-size: 40px;
+    }
+  
+    .drag-area .header {
+      font-size: 18px;
+    }
+  
+    .drag-area .support {
+      font-size: 10px;
+    }
+  
+    .drag-area .SelectImage {
+      font-size: 18px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .container {
+      padding: 10px;
+      border-radius: 5px;
+    }
+  
+    .drag-area {
+      height: 200px;
+      margin: 3px auto;
+    }
+  
+    .drag-area .icon {
+      font-size: 30px;
+    }
+  
+    .drag-area .header {
+      font-size: 16px;
+    }
+  
+    .drag-area .support {
+      font-size: 8px;
+    }
+  
+    .drag-area .SelectImage {
+      font-size: 16px;
+    }
+  }
+  
+  .images{
+    display: none;
+    width: 100%;
+    height: 20vw;
+    overflow-y: scroll;
+  }
+  .image-wrap{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 19px;
+    justify-content: start;
+  }
+  ::-webkit-scrollbar{
+    width: 2px;
+  }
+  ::-webkit-scrollbar-track{
+    background-color:transparent;
+  }
+  ::-webkit-scrollbar-thumb{
+    background-color: var(--PrimaryColor);
+    height: 5px;
+  }
+  .img{
+    width: 7vmax; 
+    height: 7vmax;  
+    background-position: center; 
+    background-size: cover;
+  }
+
+.buttons{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.buttons button{
+  padding: 5px 20px ;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.3s ease-in-out;
+}
+.upload-btn{
+  color: var(--SecondColor);
+  background-color: var(--PrimaryColor);
+
+}
+.upload-btn:hover{
+  background-color: transparent;
+  color: var(--PrimaryColor);
+  border: 1px solid var(--PrimaryColor);
+
+}
+.cancel-btn{
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+.cancel-btn:hover{
+  border: 1px solid var(--PrimaryColor);
+}

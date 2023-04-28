@@ -11,73 +11,38 @@ Category.addEventListener('click',()=>{
 })
 
 
+let selectImage = document.querySelector('.SelectImage');
+let fileInput = document.querySelector('.file-input');
+let imageWrap = document.querySelector('.image-wrap');
+let images = document.querySelector('.images');
+let imageCount = 0;
 
- 
-
-
- const dropArea = document.querySelector(".drag-area");
-const dragText = document.querySelector(".header");
-
-let button = dropArea.querySelector(".button");
-let input = dropArea.querySelector("input");
-
-let file;
-
-button.onclick = () => {
-  input.click();
-};
-
-// when browse
-input.addEventListener("change", function () {
-  file = this.files[0];
-  dropArea.classList.add("active");
-  displayFile();
+selectImage.addEventListener('click', () => {
+  images.setAttribute('style', 'display:block;');
+  fileInput.click();
 });
 
-// when file is inside drag area
-dropArea.addEventListener("dragover", (event) => {
-  event.preventDefault();
-  dropArea.classList.add("active");
-  dragText.textContent = "Release to Upload";
-  // console.log('File is inside the drag area');
-});
+fileInput.addEventListener('change', (event) => {
+  const files = event.target.files;
 
-// when file leave the drag area
-dropArea.addEventListener("dragleave", () => {
-  dropArea.classList.remove("active");
-  // console.log('File left the drag area');
-  dragText.textContent = "Drag & Drop";
-});
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const reader = new FileReader();
 
-// when file is dropped
-dropArea.addEventListener("drop", (event) => {
-  event.preventDefault();
-  // console.log('File is dropped in drag area');
+    if (file.type.match(/image.*/)) {
+      reader.addEventListener('load', () => {
+        let url = reader.result;
+        let img = document.createElement('div');
+        img.setAttribute('style', "background-image: url(" + url+ ");");
+        img.setAttribute('class', 'img');
+        imageWrap.appendChild(img);
 
-  file = event.dataTransfer.files[0]; // grab single file even of user selects multiple files
-  // console.log(file);
-  displayFile();
-});
+      });
 
-function displayFile() {
-  let fileType = file.type;
-  // console.log(fileType);
-
-  let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
-
-  if (validExtensions.includes(fileType)) {
-    // console.log('This is an image file');
-    let fileReader = new FileReader();
-
-    fileReader.onload = () => {
-      let fileURL = fileReader.result;
-      // console.log(fileURL);
-      let imgTag = `<img src="${fileURL}" alt="">`;
-      dropArea.innerHTML = imgTag;
-    };
-    fileReader.readAsDataURL(file);
-  } else {
-    alert("This is not an Image File");
-    dropArea.classList.remove("active");
+      reader.readAsDataURL(file);
+    }
   }
-}
+});
+
+
+
