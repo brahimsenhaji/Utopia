@@ -1,11 +1,11 @@
-let Category = document.querySelector('.Category');
+let category = document.querySelector('.category');
 let Floors = document.querySelector('#Floors');
 
-Category.addEventListener('click',()=>{
-    if(Category.value == "Apartment"){
+category.addEventListener('click',()=>{
+    if(category.value == "Apartment"){
         Floors.setAttribute('style',' display: none;');
     }
-    else if(Category.value == "House"){
+    else if(category.value == "House"){
         Floors.setAttribute('style',' display: bolck;');
     }
 })
@@ -43,6 +43,3 @@ fileInput.addEventListener('change', (event) => {
     }
   }
 });
-
-
-
