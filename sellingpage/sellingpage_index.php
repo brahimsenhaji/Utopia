@@ -36,6 +36,7 @@ session_start();
         </header>
    <main>
     <section>
+        
         <form action="../Includes/iteminforamtion_inc.php" method="post" enctype="multipart/form-data" class="form">
             <div class="input-wrap">
                 <label>Title</label>
