@@ -28,7 +28,7 @@
                         <img src="./Images/Logo.png" alt="">
                     </div>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Buy</a></li>
+                    <li><a href="./buyingpage/buyingpage_index.php">Buy</a></li>
                     <?php 
                       if(isset($_SESSION['UserId'])){
                        echo ' <li><a href="./listingpage/listing_index.php">Sell</a></li>';
