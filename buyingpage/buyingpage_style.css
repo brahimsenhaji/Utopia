@@ -1,0 +1,135 @@
+@import url('../Navbar_Style.css');
+@import url('../index.style.css');
+body{
+    background-color: var(--PrimaryColor) ;
+}
+::-webkit-scrollbar{
+    width: 0;
+  }
+main{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.Filter{
+    position: relative;
+    width: 20%;
+    height: 80vh;
+    background-color: var(--SecondColor);
+    padding: 15px;
+}
+.title-wrap{
+  margin-bottom: 10px ;
+}
+.title-wrap p{
+    font-size: 12px;
+}
+.Filter form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.input-wrap {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.input-wrap select {
+    width: 100%;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid var(--PrimaryColor);
+}
+.input-wrap input{
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid var(--PrimaryColor);
+}
+
+.properties{
+    display: grid;
+    gap: 10px;
+    width: 45%;
+    height: 100%;
+    border: 1px solid var(--SecondColor);
+    border-bottom: none;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.Card{
+    background-color: var(--SecondColor);
+    color: var(--PrimaryColor);
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Card img{
+    width: 50% ;
+    padding: 10px;
+}
+.Card-info{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 10px;
+    background-color: var(--PrimaryColor);
+    color: var(--SecondColor);
+    border: 1px solid var(--SecondColor);
+    
+}
+.Card .info{
+   display: flex;
+   align-items: center;
+   gap: 1px;
+   width: 100%;
+   flex-wrap: wrap;
+   border-bottom: 1px solid var(--SecondColor);
+   padding: 2px;
+}
+.Card .info p{
+    text-align: center;
+    font-size: 12px;
+    padding: 4px 5px;
+}
+.description{
+   font-size: 12px;
+   padding: 5px;
+   height: 60px;
+   overflow: hidden;
+}
+.More-info{
+    padding: 5px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+.More-info a{
+    color: var(--PrimaryColor);
+    background-color: var(--SecondColor);
+    border: 1px solid transparent;
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+.More-info a:hover{
+    background-color: transparent;
+    border: 1px solid var(--SecondColor);
+    color: var(--SecondColor);
+
+}
+.price{
+  padding: 5px;
+  font-weight: bold;
+  
+}
+.map{
+    width: 30%;
+    height: 100%;
+    background-color: var(--SecondColor);
+}

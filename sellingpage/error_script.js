@@ -14,9 +14,11 @@ input.forEach(input =>{
         if (title.value.length >= 5  && disruption.value.length >= 5 && floors.value.length >= 1 && rooms.value.length >= 1 && kitchen.value.length >= 1 && bathroom.value.length >= 1 && price.value.length >= 1 && street.value.length >= 1 && number.value.length >= 1 ) {
             console.log("All input fields meet the requirements");
             upload_btn.disabled = false; // Enable the button
+            upload_btn.classList.remove("change");
           } else{
             console.log("Some input fields do not meet the requirements");
             upload_btn.disabled = true; // Disable the button
+            upload_btn.classList.add("change");
           }          
         });
         

@@ -23,7 +23,7 @@ session_start();
                     <li><a href="../Index.php">Home</a></li>
                     <li><a href="#">Buy</a></li>
                     <li><a href="../listingpage/listing_index.php">Sell</a></li>   
-                    <li><a href="#">Rent</a></li>
+                    <li><a href="../listingpage/listing_index.php">Rent</a></li>
                     <li><a href="#">Help</a></li>
                 </ul>
                 <form action="../Includes/logout_inc.php" method="Get" class="logout" id="logout">
@@ -106,7 +106,7 @@ session_start();
 
                 if (mysqli_num_rows($result) > 0) {
                     while($row = mysqli_fetch_assoc($result)) {
-                        echo '<option value="'.$row['id'].'">'.$row['ville'].'</option>';
+                        echo '<option value="'.$row['ville'].'">'.$row['ville'].'</option>';
                     }
                 }
 

@@ -241,26 +241,33 @@ h3 {
 }
 .buttons button{
   padding: 5px 20px ;
-  cursor: pointer;
   border: 1px solid transparent;
   transition: 0.3s ease-in-out;
 }
 .upload-btn{
   color: var(--PrimaryColor);
   background-color: var(--SecondColor);
-}
-.upload-btn:hover{
-  background-color: transparent;
-  color: var(--SecondColor);
-  border: 1px solid var(--SecondColor);
-
+  cursor: default;
+  opacity: 0.5;
 }
 .cancel-btn{
   background-color: transparent;
   border: 1px solid transparent;
   color: var(--SecondColor);
+  cursor: pointer;
 }
 .cancel-btn:hover{
   border: 1px solid var(--SecondColor);
 }
 
+.change{
+  color: var(--PrimaryColor);
+  background-color: var(--SecondColor);
+  cursor: pointer;
+  opacity: 1;
+}
+.change:hover{
+  background-color: transparent;
+  color: var(--SecondColor);
+  border: 1px solid var(--SecondColor);
+}

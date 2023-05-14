@@ -24,7 +24,7 @@
                     <li><a href="../Index.php">Home</a></li>
                     <li><a href="#">Buy</a></li>
                     <li><a href="./listing_index.php">Sell</a></li>
-                    <li><a href="#">Rent</a></li>
+                    <li><a href="./listing_index.php">Rent</a></li>
                     <li><a href="#">Help</a></li>
                 </ul>
                 <form action="./Includes/logout_inc.php" method="Get" class="logout">
@@ -86,7 +86,7 @@
                     
                     <div class="card__content">
                     <p class="card__title">Rent your property</p>
-                    <a href="../Index.php" class="card-link">GET STARTED</a>
+                    <a href="../sellingpage/sellingpage_index.php" class="card-link">GET STARTED</a>
                     </div>
                 </div>
                 </div>

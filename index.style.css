@@ -55,6 +55,9 @@ select {
   font: inherit;
 }
 
+::-webkit-scrollbar{
+  width: 0;
+}
 /*------------------------------------------------------------------------*/
 @import url('https://fonts.cdnfonts.com/css/roboto');
 

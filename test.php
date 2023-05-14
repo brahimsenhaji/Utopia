@@ -3,7 +3,7 @@
 include './Classes/db_PDS.class.php';
 
 // prepare the SQL statement to select all properties
-$sql = "SELECT * FROM properties";
+$sql = "SELECT * FROM properties;";
 $result = mysqli_query($conn, $sql);
 
 // check if any properties exist
