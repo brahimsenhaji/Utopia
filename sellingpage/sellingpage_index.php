@@ -9,6 +9,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./sellingpage_style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.js"></script>
+    
     <title>Document</title>
 </head>
 <body>
@@ -101,7 +104,7 @@ session_start();
                 <?php
                 include '../Classes/db_PDS.class.php';
 
-                $sql = "SELECT * FROM ville";
+                $sql = "SELECT * FROM ville ORDER BY ville ASC";
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -123,6 +126,13 @@ session_start();
                 <label>Number</label>
                 <input class="number" type="text" name="number" id="input"  require>
             </div>
+            <div class="map-wrap">
+                <label class="showMap">Open the map to add your address</label>
+                <div class="map-div">
+                  <i class="fa-solid fa-xmark"></i>
+                  <div id="map" style="width: 80%; height: 80%; filter: grayscale(50%);"></div>
+                </div>
+            </div>
             <div class="buttons">
                 <button type="submit" class="cancel-btn" name="cancel-btn">Cancel</button>
                 <button type="submit" class="upload-btn" name="upload-btn" id='upload-btn' disabled>Upload</button>                
@@ -134,5 +144,6 @@ session_start();
 
 <script src="./sellingpage_script.js"></script>
 <script src="./error_script.js"></script>
+<script src="./selling_map.js"></script>
 </body>
 </html>

@@ -1,44 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+<!--  <div id="map" style="width: 400px; height: 400px;"></div>
+  <div id="map2" style="width: 400px; height: 400px;"></div>-->
+
 <?php
-// include database connection file
-include './Classes/db_PDS.class.php';
-
-// prepare the SQL statement to select all properties
-$sql = "SELECT * FROM properties;";
-$result = mysqli_query($conn, $sql);
-
-// check if any properties exist
-if (mysqli_num_rows($result) > 0) {
-  // output data of each property
-  while($row = mysqli_fetch_assoc($result)) {
-    // display property information
-    echo "<h2>" . $row["title"] . "</h2>";
-    echo "<p>Category: " . $row["category"] . "</p>";
-    echo "<p>Floors: " . $row["floors"] . "</p>";
-    echo "<p>Rooms: " . $row["rooms"] . "</p>";
-    echo "<p>Kitchen: " . $row["kitchen"] . "</p>";
-    echo "<p>Bathroom: " . $row["bathroom"] . "</p>";
-    echo "<p>Price: $" . $row["price"] . "</p>";
-    echo "<p>City: " . $row["city"] . "</p>";
-    echo "<p>Street: " . $row["street_name"] . "</p>";
-    echo "<p>House number: " . $row["house_number"] . "</p>";
-    // display property image(s)
-    $id = $row['id'];
-    $sql2 = "SELECT * FROM images WHERE property_id = $id;";
-    $result2 = mysqli_query($conn, $sql2);
-    if (mysqli_num_rows($result2) > 0) {
-      while($row2 = mysqli_fetch_assoc($result2)) {
-    
-      echo "<img src='./uploads/" . $row2['image_url']. "' width='200' />";
-    
-        }
-    }
-
-    echo "<hr>";
-  }
-} else {
-  echo "No properties found.";
-}
-
-// close the database connection
-mysqli_close($conn);
+$Latitude = $_COOKIE['Latitude'];
+$Longitude = $_COOKIE['Longitude'];
+echo $Latitude;
+echo $Longitude;
 ?>
+
+
+<!--<script>
+    const map = L.map('map').setView([0, 0], 13);
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const latlng = [position.coords.latitude, position.coords.longitude];
+        map.setView(latlng, 13);
+        L.marker(latlng).addTo(map);
+
+        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latlng[0]}&lon=${latlng[1]}&format=json`)
+          .then(response => response.json())
+          .then(data => {
+            const address = data.display_name;
+            console.log('Current Location:');
+            console.log('Latitude:', latlng[0]);
+            console.log('Longitude:', latlng[1]);
+            console.log('Address:', address);
+
+            const map2 = L.map('map2').setView(latlng, 13);
+            const tiles2 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              maxZoom: 19,
+              attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map2);
+
+            L.marker(latlng).addTo(map2);
+            L.popup()
+              .setLatLng(latlng)
+              .setContent(address)
+              .openOn(map2);
+
+            // Click event listener on map1
+            map.on('click', function(e) {
+              const clickedLatlng = e.latlng;
+              const clickedAddress = getAddressFromLatLng(clickedLatlng);
+
+              map2.setView(clickedLatlng, 13);
+              L.marker(clickedLatlng).addTo(map2);
+              L.popup()
+                .setLatLng(clickedLatlng)
+                .setContent(clickedAddress)
+                .openOn(map2);
+            });
+
+            function getAddressFromLatLng(latlng) {
+              return fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latlng.lat}&lon=${latlng.lng}&format=json`)
+                .then(response => response.json())
+                .then(data => data.display_name)
+                .catch(error => console.log(error));
+            }
+          })
+          .catch(error => console.log(error));
+      });
+    } else {
+      console.log('Geolocation is not available');
+    }
+  </script>-->
+  <script src="./sellingpage/Cockie.js"></script>
+</body>
+</html>

@@ -271,3 +271,62 @@ h3 {
   color: var(--SecondColor);
   border: 1px solid var(--SecondColor);
 }
+.map-wrap{
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.map-wrap label{
+  width: 100%;
+  padding: 5px ;
+  border: none;
+  border: 1px solid var(--SecondColor);
+  background-color: transparent;
+  color: var(--TherdColor);
+  text-align: center;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.map-wrap label:hover{
+  background-color: var(--SecondColor);
+  color: var(--PrimaryColor);
+}
+.map-wrap .map-div{
+  position: absolute;
+  z-index: 100;
+  background-color: var(--SecondColor);
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  transition: 0.3s;
+}
+
+.leaflet-control-attribution{
+  display: none;
+}
+.leaflet-touch .leaflet-bar a{
+  background-color: black ; color: white; border: none;
+  transition: 0.3S;
+}
+.leaflet-touch .leaflet-bar a:hover{
+ color: rgb(0, 0, 0); border: none;
+}
+.fa-xmark{
+  position: absolute;
+  color: var(--PrimaryColor);
+  top: 2%;
+  right: 2%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.fa-xmark:hover{
+  font-size: 25px;
+}

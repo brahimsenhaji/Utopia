@@ -67,20 +67,22 @@
             <i class="fa-solid fa-bars"></i>
         </header>
         <main>
+        <img src="../Images/image13.png" class="image13">
+        <img src="../Images/image13.png" class="image14">
             <section class="Filter">
                     <div class="title-wrap">
                         <h1>Filter By</h1>
                         <p>Finde the best property for you</p>
                     </div>
-                <form action="" method="get">
+                <form action="../Includes/Filter_inc.php" method="get">
                     <div class="input-wrap">
                         <label>City</label>
-                        <select name="city" id="input" class="city">
+                        <select name="city" id="input" class="city-input">
                             <option value="">Select</option>
                             <?php
                             include '../Classes/db_PDS.class.php';
 
-                            $sql = "SELECT * FROM ville";
+                            $sql = "SELECT * FROM ville ORDER BY ville ASC";
                             $result = mysqli_query($conn, $sql);
 
                             if (mysqli_num_rows($result) > 0) {
@@ -95,26 +97,28 @@
                     </div>
                     <div class="input-wrap">
                         <label>Category</label>
-                        <select name="category" class="category" id="input">
+                        <select name="category" class="category-input" id="input">
                             <option value="House">House</option>
                             <option value="Apartment">Apartment</option>
                         </select>
                     </div>
                     <div class="input-wrap" id="Floors">
                         <label>Floors</label>
-                        <input class="floors" type="text" name="floors" id="input" require>
+                        <input class="floors-input" type="text" name="floors" id="input" require>
+                     
+
                     </div>
                     <div class="input-wrap">
                         <label>Rooms</label>
-                        <input class="rooms" type="text" name="rooms"  id="input" require>
+                        <input class="rooms-input" type="text" name="rooms"  id="input" require>
                     </div>
                     <div class="input-wrap">
                         <label>Kitchen</label>
-                        <input class="kitchen" type="text" name="kitchen"  id="input" require>
+                        <input class="kitchen-input" type="text" name="kitchen"  id="input" require>
                     </div>
                     <div class="input-wrap">
                         <label>Bathroom</label>
-                        <input class="bathroom" type="text" name="bathroom"  id="input" require>
+                        <input class="bathroom-input" type="text" name="bathroom"  id="input" require>
                     </div>
                    
                 </form>
@@ -132,7 +136,7 @@
                         if (mysqli_num_rows($result) > 0) {
                         // output data of each property
                         while ($row = mysqli_fetch_assoc($result)) {
-                         echo "<div class='Card'>";
+                         echo "<div class='Card' data-value='{$row['id']}' city-value='{$row["city"]}' category-value='{$row["category"]}' floor-value='{$row["floors"]}' rooms-value='{$row["rooms"]}' kitchen-value='{$row["kitchen"]}' bathroom-value='{$row["bathroom"]}'>";
                                 // display property image(s)
                                 
                                 $id = $row['id'];
@@ -159,7 +163,7 @@
                                             echo '<i class="fa-solid fa-building"></i>';
                                         }
                                         
-                                        echo "<p>{$row["floors"] } Floors</p>";
+                                        echo "<p class='floors-data' data-value='{$row["floors"]}'>{$row["floors"]} Floors</p>";
                                         echo "<p>{$row["rooms"] } Rooms</p>";
                                         echo "<p>{$row["kitchen"] } Kitchen</p>";
                                         echo "<p>{$row["bathroom"] } Bathroom</p>";
@@ -193,11 +197,12 @@
 
                         <style>
                             .leaflet-control-attribution{display: none;}
-                            .leaflet-touch .leaflet-bar a{background-color: black ; color: white; border: none;}
+                            .leaflet-touch .leaflet-bar a{background-color: black ; color: white; border: none; transition: 0.3S;}
+                            .leaflet-touch .leaflet-bar a:hover{color: rgb(0, 0, 0); border: none;}
                         </style>
                 <script>
 
-               const map = L.map('map').setView([0, 0], 13);
+                const map = L.map('map').setView([0, 0], 13);
                 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

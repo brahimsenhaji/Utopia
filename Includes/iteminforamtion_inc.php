@@ -15,16 +15,24 @@ session_start();
  $street_name = $_POST['street'];
  $house_number = $_POST['number'];
  $userId = $_SESSION['UserId'];
+ if(isset($_COOKIE['Latitude']) && isset($_COOKIE['Longitude'])){
+    $Latitude = $_COOKIE['Latitude'];
+    $Longitude = $_COOKIE['Longitude'];
+ }
+ else{
+    $Latitude = null;
+    $Longitude = null;
+ }
 if(isset($_POST['upload-btn'])){
    
    
     if(!empty($title) && !empty($category) && !empty($disruption) && !empty($floors) && !empty($rooms) && !empty($kitchen) && !empty($bathroom) && !empty($price) && !empty($city) && !empty($street_name) && !empty($house_number)){
          // Insert property details into the database
-    $sql = "INSERT INTO properties (user_id,title, category, floors, rooms, kitchen, bathroom, price, city, street_name, house_number,disruption) 
-    VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+    $sql = "INSERT INTO properties (user_id,title, category, floors, rooms, kitchen, bathroom, price, city, street_name, house_number,disruption,latitude,longitude) 
+    VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
 $stmt = mysqli_stmt_init($conn);
 if (mysqli_stmt_prepare($stmt, $sql)) {
-mysqli_stmt_bind_param($stmt, "issiiiiissss", $userId, $title, $category, $floors, $rooms, $kitchen, $bathroom, $price, $city, $street_name, $house_number, $disruption);
+mysqli_stmt_bind_param($stmt, "issiiiiissssdd", $userId, $title, $category, $floors, $rooms, $kitchen, $bathroom, $price, $city, $street_name, $house_number, $disruption, $Latitude, $Longitude);
 mysqli_stmt_execute($stmt);
 }
 

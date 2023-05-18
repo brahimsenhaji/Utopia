@@ -19,17 +19,39 @@ main{
     height: 80vh;
     background-color: var(--SecondColor);
     padding: 15px;
+    overflow: hidden;
+    z-index: 100;
+}
+.image13{
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 30%;
+}
+.image14{
+    position: absolute;
+    z-index: 1;
+    right: 20% ;
+    bottom: 0;
+    width: 30%;
 }
 .title-wrap{
+  position: relative;
   margin-bottom: 10px ;
+  z-index: 100;
 }
 .title-wrap p{
     font-size: 12px;
+    z-index: 100;
 }
 .Filter form{
+    position: absolute;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    z-index: 100;
+    width: 85%;
 }
 .input-wrap {
     display: flex;
@@ -58,6 +80,7 @@ main{
     border-bottom: none;
     padding: 10px;
     overflow-y: scroll;
+    z-index: 100;
 }
 
 .Card{
@@ -78,8 +101,8 @@ main{
     flex-direction: column;
     width: 50%;
     padding: 10px;
-    background-color: var(--PrimaryColor);
-    color: var(--SecondColor);
+    background-color: var(--SecondColor);
+    color: var(--PrimaryColor);
     border: 1px solid var(--SecondColor);
     
 }
@@ -89,7 +112,7 @@ main{
    gap: 1px;
    width: 100%;
    flex-wrap: wrap;
-   border-bottom: 1px solid var(--SecondColor);
+   border-bottom: 1px solid var(--PrimaryColor);
    padding: 2px;
 }
 .Card .info p{
@@ -111,25 +134,29 @@ main{
     margin: 5px 0;
 }
 .More-info a{
-    color: var(--PrimaryColor);
-    background-color: var(--SecondColor);
+    color: var(--SecondColor);
+    background-color: var(--PrimaryColor);
     border: 1px solid transparent;
     padding: 5px 10px;
     transition: 0.3s;
 }
 .More-info a:hover{
     background-color: transparent;
-    border: 1px solid var(--SecondColor);
-    color: var(--SecondColor);
+    border: 1px solid var(--PrimaryColor);
+    color: var(--PrimaryColor);
 
 }
 .price{
   padding: 5px;
-  font-weight: bold;
-  
+  font-weight: bold; 
 }
 .map{
     width: 30%;
     height: 100%;
     background-color: var(--SecondColor);
+    z-index: 100;
+}
+
+.hide{
+    display: none;
 }
