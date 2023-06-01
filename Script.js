@@ -1,9 +1,51 @@
+if ('geolocation' in navigator) {
+  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+} else {
+  console.log('Geolocation is not supported by your browser');
+}
+
+function successCallback(position) {
+  const latitude = position.coords.latitude;
+  const longitude = position.coords.longitude;
+
+  const xhr = new XMLHttpRequest();
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+
+  xhr.open('GET', url, true);
+
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      const city = response.address.city;
+      console.log('Your city name is: ' + city);
+
+      const citySet = sessionStorage.getItem('citySet');
+      if (!citySet) { // Check if the city has already been set
+        sessionStorage.setItem('citySet', 'true');
+
+        // Pass the city name as a query parameter in the URL
+        const newUrl = window.location.href + '?city=' + encodeURIComponent(city);
+        window.location.href = newUrl;
+
+        // Set the city name as a cookie
+        document.cookie = 'City='+ city;
+      }
+    } else {
+      console.log('Request failed. Status code: ' + xhr.status);
+    }
+  };
+
+  xhr.send();
+}
+
+function errorCallback(error) {
+  console.log('Error occurred. Error code: ' + error.code);
+}
+
+
+
 let Log_in = document.querySelector(".Log_in");
 let Sign_in = document.querySelector(".Sign_in");
-
-
-
-
 
 window.onscroll = ()=>{
     let container = document.querySelector('.container');
@@ -41,4 +83,5 @@ menu.addEventListener('click',()=>{
 
     menu.classList.toggle('fa-xmark')
 })
+
 

@@ -247,8 +247,7 @@ h3 {
 .upload-btn{
   color: var(--PrimaryColor);
   background-color: var(--SecondColor);
-  cursor: default;
-  opacity: 0.5;
+  cursor: pointer;
 }
 .cancel-btn{
   background-color: transparent;
@@ -329,4 +328,10 @@ h3 {
 }
 .fa-xmark:hover{
   font-size: 25px;
+}
+
+#error-message {
+  display: none;
+  color: red;
+  margin-top: 5px;
 }

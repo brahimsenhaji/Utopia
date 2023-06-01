@@ -133,14 +133,15 @@ main{
     justify-content: space-between;
     margin: 5px 0;
 }
-.More-info a{
+.More-info form .moreinfo{
     color: var(--SecondColor);
     background-color: var(--PrimaryColor);
     border: 1px solid transparent;
     padding: 5px 10px;
     transition: 0.3s;
+    cursor: pointer;
 }
-.More-info a:hover{
+.More-info form .moreinfo:hover{
     background-color: transparent;
     border: 1px solid var(--PrimaryColor);
     color: var(--PrimaryColor);

@@ -1,0 +1,147 @@
+@import url('../index.style.css');
+@import url('../Navbar_Style.css');
+
+header a{
+    color: var(--PrimaryColor);
+}
+header a::after{
+    background-color: var(--PrimaryColor);
+}
+.main{
+    width: 100%;
+    height: 75vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.Image-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--PrimaryColor);
+    padding: 5px;
+}
+.wrap{
+    width: 20%;
+    height: 80%;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    overflow-y:scroll;
+    margin: 1px 0px 1px 0px;
+    padding: 5px;
+}
+#img{
+    width: 100%;
+    height: 25%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#img:hover{
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.384));
+}
+.index-img{
+    width: 80%;
+    height: 80%;
+    padding: 5px;
+
+}
+.Info-wrap{
+    padding:20px;
+    background-color: var(--PrimaryColor);
+    color: var(--SecondColor);
+    gap: 20px;
+    height: 85%;
+
+}
+.Info-wrap .info{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: gray;
+}
+.price{
+    margin-top: 10px;
+}
+.price p{
+    color: gray;
+}
+.description{
+    width: 80%;
+    margin:  10px 0;
+}
+.description P{
+    color: gray;
+}
+.adresse .ad{
+    color: gray;
+}
+footer{
+    width: 100%;
+    height: 20vh;
+    background-color: var(--PrimaryColor);
+}
+/* mobile veiw of max-width 375px == 23.4375em, 750 = 46.875em */
+@media (max-width: 23.4375em) {
+    .main {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .Image-wrap{
+        display: block;
+        padding: 5px;   
+        width: 100%; 
+    }
+    .wrap{
+        display: flex;
+        flex-wrap: nowrap;
+        height: fit-content;
+        overflow-x: scroll;
+        padding: 0;
+    }
+    #img{
+        width: 5em;
+        height: 4em;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .index-img{
+        width: 30em;
+        height: 20em;
+        padding: 0;    
+    }
+    .Info-wrap{
+        height: fit-content;
+    }
+}
+@media (max-width: 50.4375em) {
+    .main {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .Image-wrap{
+        display: block;
+        padding: 5px;
+    }
+    .wrap{
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: fit-content;
+        overflow-x: scroll;
+        padding: 0;
+    }
+    #img{
+        width: 5em;
+        height: 4em;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .index-img{
+        width: 30em;
+        height: 20em;
+        padding: 0;    
+    }
+    .Info-wrap{
+        height:fit-content ;
+    }
+}

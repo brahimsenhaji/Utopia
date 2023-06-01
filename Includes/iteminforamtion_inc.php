@@ -14,25 +14,19 @@ session_start();
  $city = $_POST['city'];
  $street_name = $_POST['street'];
  $house_number = $_POST['number'];
+ $latitude = $_POST['Latitude'];
+ $longitude = $_POST['Longitude'];
  $userId = $_SESSION['UserId'];
- if(isset($_COOKIE['Latitude']) && isset($_COOKIE['Longitude'])){
-    $Latitude = $_COOKIE['Latitude'];
-    $Longitude = $_COOKIE['Longitude'];
- }
- else{
-    $Latitude = null;
-    $Longitude = null;
- }
+
 if(isset($_POST['upload-btn'])){
-   
-   
     if(!empty($title) && !empty($category) && !empty($disruption) && !empty($floors) && !empty($rooms) && !empty($kitchen) && !empty($bathroom) && !empty($price) && !empty($city) && !empty($street_name) && !empty($house_number)){
          // Insert property details into the database
     $sql = "INSERT INTO properties (user_id,title, category, floors, rooms, kitchen, bathroom, price, city, street_name, house_number,disruption,latitude,longitude) 
-    VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 $stmt = mysqli_stmt_init($conn);
 if (mysqli_stmt_prepare($stmt, $sql)) {
-mysqli_stmt_bind_param($stmt, "issiiiiissssdd", $userId, $title, $category, $floors, $rooms, $kitchen, $bathroom, $price, $city, $street_name, $house_number, $disruption, $Latitude, $Longitude);
+  
+mysqli_stmt_bind_param($stmt, "issiiiiissssdd", $userId, $title, $category, $floors, $rooms, $kitchen, $bathroom, $price, $city, $street_name, $house_number, $disruption, $latitude, $longitude);
 mysqli_stmt_execute($stmt);
 }
 
@@ -58,7 +52,7 @@ if($error === 0){
         move_uploaded_file($tmp_name, $img_upload_path);
 
         // Insert image into the database
-        $sql = "INSERT INTO images (property_id, image_url) VALUES (?, ?)";
+        $sql = "INSERT INTO images (property_id, image_url) VALUES (?,?)";
         $stmt = mysqli_stmt_init($conn);
         if (mysqli_stmt_prepare($stmt, $sql)) {
             mysqli_stmt_bind_param($stmt, "is", $property_id, $new_img_name);
@@ -74,6 +68,7 @@ if($error === 0){
     header("Location: index.php?error=$em");
     exit();
 }
+
 }
 
 // Close the database connection

@@ -1,3 +1,4 @@
+
 let cards = document.querySelectorAll('.Card');
 let floors_input = document.querySelector('.floors-input');
 //fitring by the number of floors 
@@ -119,3 +120,33 @@ city_input.addEventListener('input',()=>{
             }
     });
 });
+
+
+const urlParams = new URLSearchParams(window.location.search);
+const searchParam = urlParams.get('search').toUpperCase();
+
+console.log(searchParam.toUpperCase());
+
+//filtring by the city name 
+
+
+//looping through the cards data to get the number of the category    
+let matchFound = false;
+
+cards.forEach(card => {
+      let cardValue_city = card.getAttribute('city-value');
+    
+      if (searchParam == cardValue_city) {
+        card.classList.remove('hide');
+        matchFound = true;
+      } else {
+        card.classList.add('hide');
+      }
+});
+    
+if (!matchFound) {
+    cards.forEach(card => {
+        card.classList.remove('hide');
+    });
+}
+    

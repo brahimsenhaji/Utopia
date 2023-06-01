@@ -1,5 +1,3 @@
-let Latitude = document.querySelector('.latitude');
-let Longitude = document.querySelector('.longitude');
 const map = L.map('map').setView([0, 0], 13);
 const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
@@ -28,7 +26,8 @@ if ('geolocation' in navigator) {
 } else {
   console.log('Geolocation is not available');
 }
-
+let lat;
+let lng;
 map.on('click', function(e) {
   const latlng = e.latlng;
 
@@ -45,14 +44,12 @@ map.on('click', function(e) {
       console.log('Longitude:', latlng.lng);
       console.log('Address:', data.display_name);
 
-  
-      let Latitude = latlng.lat;
-      let Longitude = latlng.lng;
-
-      localStorage.setItem("Latitude",Latitude);
-      localStorage.setItem("Longitude",Longitude);
-      
-    })
+      let Latitude = document.querySelector('.Latitude');
+      let Longitude = document.querySelector('.Longitude');
+    
+      Latitude.value = latlng.lat;
+      Longitude.value = latlng.lng;
+    }) 
     .catch(error => console.log(error));
 });
 
@@ -69,3 +66,11 @@ map.on('click', function(e) {
     removeMap.addEventListener('click',()=>{
         map_div.style.transform = "scale(0)";
     })
+
+
+    
+    
+    
+    
+    
+    

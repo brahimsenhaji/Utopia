@@ -87,7 +87,7 @@
 
                             if (mysqli_num_rows($result) > 0) {
                                 while($row = mysqli_fetch_assoc($result)) {
-                                 echo "<option value='{$row['ville']}'>{$row['ville']}</option>";
+                                 echo "<option>{$row['ville']}</option>";
                                 }
                             }
 
@@ -134,25 +134,37 @@
 
                         // check if any properties exist
                         if (mysqli_num_rows($result) > 0) {
+                        // Create an empty array to store the coordinates 
+                            $coordinates = []; 
+                            $images = [];
+                           
                         // output data of each property
-                        while ($row = mysqli_fetch_assoc($result)) {
-                         echo "<div class='Card' data-value='{$row['id']}' city-value='{$row["city"]}' category-value='{$row["category"]}' floor-value='{$row["floors"]}' rooms-value='{$row["rooms"]}' kitchen-value='{$row["kitchen"]}' bathroom-value='{$row["bathroom"]}'>";
-                                // display property image(s)
+                        while ($row = mysqli_fetch_assoc($result)) {    
+                                 // display property image(s)
                                 
-                                $id = $row['id'];
-                                $sql2 = "SELECT * FROM images WHERE property_id = $id LIMIT 1;";
-                                $result2 = mysqli_query($conn, $sql2);
-                                if (mysqli_num_rows($result2) > 0) {
-                                    
+                                 $id = $row['id'];
+                                 $sql2 = "SELECT * FROM images WHERE property_id = $id LIMIT 1;";
+                                 $result2 = mysqli_query($conn, $sql2);
+                                 if (mysqli_num_rows($result2) > 0) {
                                     while ($row2 = mysqli_fetch_assoc($result2)) {
-                                     echo "<img src='../uploads/" . $row2['image_url'] . "' width='200' />";
+                                        echo "<div class='Card' data-value='{$row['id']}' title-value='{$row["title"]}' city-value='{$row["city"]}' category-value='{$row["category"]}' floor-value='{$row["floors"]}' rooms-value='{$row["rooms"]}' kitchen-value='{$row["kitchen"]}' bathroom-value='{$row["bathroom"]}' latitude-value='{$row["latitude"]}' longitude-value='{$row["longitude"]}' image-value='{$row2['image_url']}'>";
+
+    
+                                     echo "<img class='card-img' src='../uploads/" . $row2['image_url'] . "' width='200' />";
+                                     $images[] = [
+                                        'image' => $row2['image_url']
+                                      ];
                                     }
+                                    $imagesJson = json_encode($images);
+
+                                    //Store the Images JSON as string in localStorage
+                                    echo "<script>";
+                                    echo "localStorage.setItem('images', JSON.stringify(" .  $imagesJson . "));";
+                                    echo "</script>";
                           
                                 }
                                
                                 echo "<div class='Card-info'>";
-                                
-                                
                                     // display property information
                                     echo "<h2>" . $row["title"] . "</h2>";
                                     echo "<div class='info'>";
@@ -176,14 +188,28 @@
                                     
                                     echo "<div class='More-info'>";
                                       echo "<p class='price'>Price " . $row["price"] . " DH</p>";
-                                      echo "<a href='#'>More info</a>";
+                                      echo "<form action='../Aboutprop/About_prop_index.php?prop-id={$row['id']}' method='post'>";
+                                       echo "<input class='moreinfo' name='More-btn' type='submit' value='More info'>";
+                                      echo "</form>";
                                     echo "</div>";
-                                    
                                 echo "</div>";
+                          echo "</div>";    
+                            // Store latitude and longitude values in the coordinates array
                             
-                          echo "</div>";
+                          $coordinates[] = [
+                          'latitude' => $row["latitude"],
+                          'longitude' => $row["longitude"]
+                          ];
                         }
-                        
+                           // Convert the coordinates and images array to JSON
+                            $coordinatesJson = json_encode($coordinates);
+
+                            // Store the JSON string in localStorage
+                            echo "<script>";
+                            echo "localStorage.setItem('coordinates', JSON.stringify(" . $coordinatesJson . "));";
+                            echo "</script>";
+
+                            
                         } else {
                            echo "No properties found.";
                         }
@@ -198,7 +224,8 @@
                         <style>
                             .leaflet-control-attribution{display: none;}
                             .leaflet-touch .leaflet-bar a{background-color: black ; color: white; border: none; transition: 0.3S;}
-                            .leaflet-touch .leaflet-bar a:hover{color: rgb(0, 0, 0); border: none;}
+                            .leaflet-touch .leaflet-bar a:hover{color: rgb(0, 0, 0); border: none; background-color: white;}
+
                         </style>
                 <script>
 
@@ -207,13 +234,35 @@
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map);
-
+            
                 if ('geolocation' in navigator) {
                 navigator.geolocation.getCurrentPosition(position => {
+
+                  
+                let markerIcon = L.icon({
+                    iconUrl: '../Images/marker_icon1.png',
+
+                    iconSize:     [40, 40], // size of the icon
+                    iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
+                    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                });
+
+                let markerCard = L.marker([50.4501, 30.5234],{alt: 'Kyiv'}).addTo(map) // "Kyiv" is the accessible name of this marker
+                    .bindPopup('Kyiv, Ukraine is the birthplace of Leaflet!');
+
                     const latlng = [position.coords.latitude, position.coords.longitude];
                     map.setView(latlng, 13);
-                    L.marker(latlng).addTo(map);
+                    L.marker([latlng[0], latlng[1]], {icon: markerIcon}).bindPopup("<b>This is your location</b>").openPopup().addTo(map);
 
+                    var circle = L.circle([latlng[0], latlng[1]], {
+                        color: 'white',
+                        fillColor: 'black',
+                        fillOpacity: 0.5,
+                        radius: 2500
+                    }).addTo(map);
+                  
+
+                    
                     fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latlng[0]}&lon=${latlng[1]}&format=json`)
                     .then(response => response.json())
                     .then(data => {
@@ -222,16 +271,82 @@
                     })
                     .catch(error => console.log(error));
                 });
+
                 } else {
                 console.log('Geolocation is not available');
                 }
 
+                //------------------------------------------------------------------------------------------------------
+                
+                let coordinates = localStorage.getItem("coordinates");
+                
+                    if (coordinates) {
+                        coordinates = JSON.parse(coordinates);
+
+                        for (let i = 0; i < coordinates.length; i++) {
+
+                           let markerIcon = L.icon({
+                                iconUrl: '../Images/marker_icon1.png',
+
+                                iconSize:     [40, 40], // size of the icon
+                                iconAnchor:   [20, 40], // point of the icon which will correspond to marker's location
+                                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+                            });
+
+                            let latitude = coordinates[i].latitude;
+                            let longitude = coordinates[i].longitude;
+
+                            let marker = L.marker([latitude, longitude],{icon: markerIcon}).addTo(map);
+
+                                marker.on('click', (e)=>{
+                                    //looping through the cards data to get the number of the Coordinate    
+                                    cards.forEach(card =>{
+                                            let cardValue_latitude = card.getAttribute('latitude-value');
+                                            let cardValue_longitude = card.getAttribute('longitude-value');
+                                            let cardValue_image = card.getAttribute('image-value');
+                                            let cardValue_title = card.getAttribute('title-value');
+                                            let images = localStorage.getItem("images");
+                                            images = JSON.parse(images);
+
+
+                                            let popupInfo = L.popup();
+
+                                            
+                                          for(let j = 0 ; j < images.length; j++){
+                                            
+                                            let image = images[j].image;
+                                            console.log(image)
+                                                if(e.latlng.lat == cardValue_latitude && e.latlng.lng == cardValue_longitude){
+                                                    card.classList.remove('hide');
+     
+                                                        if(image == cardValue_image){
+                                                            
+                                                        popupInfo
+                                                        .setLatLng(e.latlng)
+                                                        .setContent(
+                                                            "<div><h2>"+cardValue_title+"</h2><br><img style='cursor: pointer;' src='../uploads/" + image + "'></div>"
+                                                            )
+                                                        .openOn(map);
+                                                        
+                                                        
+                                                       }
+                                                      
+                                                       
+                                                }
+                                                else{
+                                                    card.classList.add('hide');
+                                                }
+                                           }
+                                    });
+                                });
+                        }
+                    }
+                  
                 </script>
                
 
             </section>
         </main>
         <script src="./buyingpage_script.js"></script>
-      
 </body>
 </html>

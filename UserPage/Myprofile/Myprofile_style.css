@@ -1,8 +1,8 @@
 @import url("../index.style.css");
 .s-layout__content h1{
     width: 100%;
-    padding-left: 20px;
-    margin-top: 20px;
+    padding-left: 40px;
+    margin-top: 30px;
  }
  .s-layout__content form{
    position: absolute;  
@@ -11,7 +11,7 @@
    display: flex;
    flex-direction: column;
    width: 100%;
-   left: 25%;
+   left: 15%;
    z-index: 10;
    margin-top: 10px;
  }
@@ -19,7 +19,7 @@
      display: flex;
      flex-direction: column;
      flex-wrap: wrap;
-     width: 40%;
+     width: 50%;
      margin: 5px;
  }
  form input{
@@ -57,3 +57,21 @@
      color: var(--SecondColor);
  }
  
+ /* mobile veiw of max-width 375px == 23.4375em, 750 = 46.875em */
+@media (max-width: 23.4375em) {
+    .s-layout__content form{
+        left: 8%;
+    }
+    form .inputs{
+        width: 90%;
+    }
+
+}
+@media (max-width: 50.4375em) {
+    form .inputs{
+        width: 90%;
+    }
+    .s-layout__content form{
+        left: 8%;
+    }
+}

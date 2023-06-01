@@ -9,6 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./Style.css">
+    <link rel="stylesheet" href="./NavBar/Navbar_style.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.min.js"></script>
+
     <link rel="shortcut icon" type="image/x-icon" href="./Images/Logo.png" />
     <title>Utopia</title>
 </head>
@@ -19,66 +25,133 @@
         <video autoplay loop muted plays-inline  class="video1" allow="autoplay">
             <source src="./Videos/video1.mp4" type="video/mp4">
         </video>
-       <!---->
-       <header >
-            <a href="#" class="Logo"><img src="./Images/Logo3.png" alt="Logo"></a>
-            <nav class="Slide">
-                <ul>
-                    <div class="logo">
-                        <img src="./Images/Logo.png" alt="">
-                    </div>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="./buyingpage/buyingpage_index.php">Buy</a></li>
-                    <?php 
-                      if(isset($_SESSION['UserId'])){
-                       echo ' <li><a href="./listingpage/listing_index.php">Sell</a></li>';
-                      }
-                      else{
-                        echo ' <li><a href="./sign-in-up_page/sign_Index.php">Sell</a></li>';
-                      }
-                    ?>
-                    
-                    <li><a href="#">Rent</a></li>
-                    <li><a href="#">Help</a></li>
-                </ul>
-                <form action="./Includes/logout_inc.php" method="Get" class="logout">
-                    <?php 
-                        if(isset($_SESSION['UserId']))
-                        {
-                          echo  '<button name="settings" class="settings"><i class="fa-regular fa-user"></i></button>';
-                          echo  '<button name="Log_out" class="Log_out"><i class="fa-solid fa-right-from-bracket"></i></i></button>';
-
-                        }
-                        ?>
-                </form>        
-                <form action="." method="Get">
-                      <?php  
-                        if(!isset($_SESSION['UserId'])){
-                            echo '<button name="Sign_in" class="Log_in" value="Log">Sign in</button>' ;
-                            echo '<button name="Sign_up" class="Sign_in" value="Sign">Sign up</button>' ;
-
-                            if(isset($_GET['Sign_in'])){
-                                header("Location: ./sign-in-up_page/sign_Index.php?Sign_in");
-                            }
-                            if(isset($_GET['Sign_up'])){
-                                header("Location: ./sign-in-up_page/sign_Index.php?Sign_up");
-                            }
-                        }
-                    ?>
-                </form>
-            </nav>
-            <i class="fa-solid fa-bars"></i>
-        </header>
+        <!--=======================INCKUDE NAV BAR=====================================-->
+            <?php include "./NavBar/Navbar_index.php"?>
+         <!--==========================================================================-->
         <main>
           <div class="main-content">
             <h1>Get your dream house</h1>
-            <form class="input-group">
-                <input type="email" class="input" id="Email" name="" placeholder="Enter an Address, City, State, Zip" autocomplete="off">
+            <form action="./buyingpage/buyingpage_index.php?city={$_GET['search']}" class="input-group" method="get">
+                <input type="text" class="input" id="serch" name="search" placeholder="Enter City name" autocomplete="off" required>
+                <script>
+                    document.getElementById('serch').addEventListener('invalid', function(event) {
+                        event.preventDefault();
+                        document.getElementById('serch').setAttribute('placeholder', 'Please Enter city name');
+                        document.getElementById('serch').style.border = "1px solid red";
+                    });
+                    document.getElementById('serch').addEventListener('input', function(event) {
+                        event.preventDefault();
+                        document.getElementById('serch').style.border = "1px solid transparent";
+                    });
+                </script>
                 <input class="button--submit" value="Search" type="submit">
             </form>
           </div>
         </main>
     </section>
+
+    <section class="Nearby">
+        <div class="Nearby-title">
+            <p>Find Your Properties</p>
+            <h1>Nearby Properties</h1>
+        </div>
+
+        <div class="Nearby-container">
+        <div class="slider" id="slider">
+            <?php 
+              
+               if(isset($_COOKIE['City'])){
+                echo "<script>";
+                    echo "let Nearbysection = document.querySelector('.Nearby');";
+                    echo "Nearbysection.style.display = 'block';";
+                echo"</script>";
+                $cityName = $_COOKIE['City'];
+                echo "<p>Explore : {$cityName}</p>";
+               }else{
+                echo "<script>";
+                  echo "let Nearbysection = document.querySelector('.Nearby');";
+                  echo "Nearbysection.style.display = 'none';";
+                echo"</script>";
+               }
+               
+            ?>
+            <div class="slide" id="slide">
+                
+                <?php
+                        // include database connection file
+                        include './Classes/db_PDS.class.php';
+
+                        if(isset($_COOKIE['City'])){
+                            $cityName = $_COOKIE['City'];
+                            // prepare the SQL statement to select all properties
+                            $sql = "SELECT * FROM properties WHERE city = '{$cityName}';";
+                            $result = mysqli_query($conn, $sql);
+                            // check if any properties exist
+                            if (mysqli_num_rows($result) > 0) {
+                                // output data of each property
+                                    while ($row = mysqli_fetch_assoc($result)) {    
+                                    echo "<div class='Nearby-card'>";
+                                            // display property image(s)
+                                            $id = $row['id'];
+                                            $sql2 = "SELECT * FROM images WHERE property_id = $id LIMIT 1;";
+                                            $result2 = mysqli_query($conn, $sql2);
+                                            if (mysqli_num_rows($result2) > 0) {
+    
+                                                    while ($row2 = mysqli_fetch_assoc($result2)) {
+                                                    echo "<div class='card-images'>";
+                                                        echo "<img class='img' src='./uploads/". $row2['image_url'] . "' width='100%' />";
+                                                    echo "</div>";
+                                                    } 
+
+                                            }
+                                            echo "<div class='Card-info'>";
+                                                // display property information
+                                                echo "<h2>" . $row["title"] . "</h2>";
+                                                echo "<div class='info'>";
+                                                    if($row["category"] == "House"){
+                                                        echo '<i class="fa-solid fa-house"></i>';
+                                                    }
+                                                    else{
+                                                        echo '<i class="fa-solid fa-building"></i>';
+                                                    }
+                                                
+                                                    echo "<p class='floors-data' data-value='{$row["floors"]}'>{$row["floors"]} Floors</p>";
+                                                    echo "<p>{$row["rooms"] } Rooms</p>";
+                                                    echo "<p>{$row["kitchen"] } Kitchen</p>";
+                                                    echo "<p>{$row["bathroom"] } Bathroom</p>";
+                                            echo "</div>";
+
+                                            echo "<div class='More-info'>";
+                                                echo "<p class='price'>Price " . $row["price"] . " DH</p>";
+                                                echo "<form action='./Aboutprop/About_prop_index.php?prop-id={$row['id']}' method='post'>";
+                                                echo "<input class='moreinfo' name='More-btn' type='submit' value='More info'>";
+                                                echo "</form>";
+                                        echo "</div>";
+
+                                        echo "</div>";
+                                    echo "</div>";     
+                                    }
+                            } else {
+                            echo "No properties found.";
+                            }
+                        }
+                        else{
+                            // prepare the SQL statement to select all properties
+                            $sql = "SELECT * FROM properties;";
+                            $result = mysqli_query($conn, $sql);
+                            echo "No properties found.";
+                        }
+                        // close the database connection
+                        mysqli_close($conn);
+                ?>
+            </div>
+        </div>
+    <button class="ctrl-btn pro-prev"><i class="fa-solid fa-greater-than"></i></button>
+    <button class="ctrl-btn pro-next"><i class="fa-solid fa-less-than"></i></button>
+</div>
+
+    </section>
+
     <section class="help-page">
         <div class="title">
             See how Utopia can help
@@ -155,6 +228,8 @@
     </footer>
   
     <script src="./script.js"></script>
-   
+    <script src="./NavBar/Navbar_script.js"></script>
+    <script src="./Slider_script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

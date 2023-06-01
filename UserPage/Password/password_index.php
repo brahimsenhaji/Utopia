@@ -9,7 +9,7 @@
 ?>
 <h1>Password</h1>
 
-<form action="" method="post">
+<form action="" method="post" class="password-form">
     <div class="input">
         <label>Current password</label>
        <div class="input-field">

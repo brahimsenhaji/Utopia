@@ -1,0 +1,91 @@
+@import url("../index.style.css");
+
+.filter_form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    width: 80vw;
+    left: 5%;
+    padding:5px 20px;
+}
+.filter_form input{
+    background-color: transparent;
+    border: none;
+    border-bottom:1px solid var(--PrimaryColor) ;
+    outline: none;
+}
+.filter_form .form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.filter_form .form button{
+    background-color: var(--PrimaryColor);
+    border: none;
+    color: var(--SecondColor);
+    padding: 5px 10px ;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.filter_form .form button:hover{
+    background-color: var(--SecondColor);
+    color: var(--PrimaryColor);
+}
+.filter_form .form select{
+    padding: 5px 25px;
+    background-color: var(--PrimaryColor);
+    color: var(--SecondColor);
+}
+.prop_cont{
+    position: relative;
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    left: 5%;
+}
+
+.prop_head{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background-color: var(--PrimaryColor);
+    color: var(--SecondColor);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.prop_cont .prop_form{
+    position: relative;
+    background-color: var(--PrimaryColor);
+    color: var(--SecondColor);
+    width: 100%;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.prop_cont form span, .prop_head button{
+    width: 15%;
+    padding: 10px 5px;
+    overflow: hidden;
+}
+.btn{
+    cursor: pointer;
+    background-color: var(--SecondColor);
+    color: var(--PrimaryColor);
+    text-align: center;
+    transition: 0.3s;
+}
+.btn:hover{
+    background-color: var(--PrimaryColor);
+    color: var(--SecondColor);
+}

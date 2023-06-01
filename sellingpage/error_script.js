@@ -1,28 +1,62 @@
-let input = document.querySelectorAll('#input');
-let title = document.querySelector(".title");
-let disruption = document.querySelector(".disruption");
-let floors = document.querySelector(".floors");
-let rooms = document.querySelector(".rooms");
-let kitchen = document.querySelector(".kitchen");
-let bathroom = document.querySelector(".bathroom");
-let price = document.querySelector(".price");
-let street = document.querySelector(".street");
-let number = document.querySelector(".number");
-let upload_btn = document.querySelector(".upload-btn");
-input.forEach(input =>{
-    input.addEventListener("input", function() {
-        if (title.value.length >= 5  && disruption.value.length >= 5 && floors.value.length >= 1 && rooms.value.length >= 1 && kitchen.value.length >= 1 && bathroom.value.length >= 1 && price.value.length >= 1 && street.value.length >= 1 && number.value.length >= 1 ) {
-            console.log("All input fields meet the requirements");
-            upload_btn.disabled = false; // Enable the button
-            upload_btn.classList.remove("change");
-          } else{
-            console.log("Some input fields do not meet the requirements");
-            upload_btn.disabled = true; // Disable the button
-            upload_btn.classList.add("change");
-          }          
-        });
-        
-})
+ // Get all input elements
+ const inputs = document.querySelectorAll('input');
+
+ // Add event listeners for invalid and input events to each input element
+ inputs.forEach(input => {
+     input.addEventListener('invalid', function(event) {
+         event.preventDefault();
+         const errorMessage = this.parentNode.querySelector('.error-message');
+         errorMessage.style.display = "block";
+         this.style.border = "1px solid red"; // Add border to highlight the input field
+     });
+
+     input.addEventListener('input', function(event) {
+         event.preventDefault();
+         const errorMessage = this.parentNode.querySelector('.error-message');
+         this.style.border = "1px solid white"; // Remove border when the user starts typing
+         errorMessage.style.display = "none"; // Hide the error message
+     });
+ });
+
+
+
+ function validateForm(form) {
+  // Floors
+  var floorsInput = form.elements["floors"];
+  var floorsValue = floorsInput.value;
+  if (!Number.isInteger(parseInt(floorsValue))) {
+    const errorMessage = floorsInput.parentNode.querySelector('.error-message-number');
+    errorMessage.style.display = "block";
+    return false; // Prevent form submission
+  }
   
-
-
+  // Rooms
+  var roomsInput = form.elements["rooms"];
+  var roomsValue = roomsInput.value;
+  if (!Number.isInteger(parseInt(roomsValue))) {
+    const errorMessage = roomsInput.parentNode.querySelector('.error-message-number');
+    errorMessage.style.display = "block";
+    return false; // Prevent form submission
+  }
+  
+  // Kitchen
+  var kitchenInput = form.elements["kitchen"];
+  var kitchenValue = kitchenInput.value;
+  if (!Number.isInteger(parseInt(kitchenValue))) {
+    const errorMessage = kitchenInput.parentNode.querySelector('.error-message-number');
+    errorMessage.style.display = "block";
+    return false; // Prevent form submission
+  }
+  
+  // Bathroom
+  var bathroomInput = form.elements["bathroom"];
+  var bathroomValue = bathroomInput.value;
+  if (!Number.isInteger(parseInt(bathroomValue))) {
+    const errorMessage = bathroomInput.parentNode.querySelector('.error-message-number');
+    errorMessage.style.display = "block";
+    return false; // Prevent form submission
+  }
+  
+  // Form is valid, allow submission
+  return true;
+}
