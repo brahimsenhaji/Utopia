@@ -3,6 +3,7 @@
 header{
   position: absolute;
   width: 100vw;
+  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -69,30 +70,96 @@ header form{
   cursor: pointer;
 }
 .fa-bars{
+  position: relative;
   color: var(--SecondColor);
   font-size: 25px;
   width: 30px;
   height: 30px;
   text-align: center;
   cursor: pointer;
-  display: none;
+  right: -100%;
 }
 .logout{
   margin-left: 40%;
+  display: flex;
+  gap: 2px;
 }
-.settings , .Log_out{
+.settings , .Log_out, .notification{
   width: 50px;
   background-color: transparent;
   border: none;
   color: var(--SecondColor);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notification{
+  position: relative;
+}
+.notification .msg{
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: var(--SecondColor);
+  color: var(--PrimaryColor);
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  top: 15%;
+  right: 20%;
+  border-radius: 100px;
+}
+.notification-wrap{
+  display: none;
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  padding: 20px;
+  background-color: var(--SecondColor);
+  color: var(--PrimaryColor);
+  top: 60%;
+  right: 12%;
+  transition: 0.3s;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.show-notification{
+  display: flex;
+}
+.notification-wrap h1{
+  font-size: 30px;
+}
+.notification-form{
+  display: flex;
+  flex-direction: column;
+  gap: 2pxpx;
+  width: 100%;
+  height: 100%;
+}
+.notification-form button{
+  width: 100%;
+  height: 50%;
+  font-size: 15px;
+  text-align: start;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+ transition: 0.3s;
+}
+.notification-form button:hover{
+  background-color: rgba(36, 35, 35, 0.144);
 }
 .side_logo{
   display: none;
 }
+.xmark{
+  color: var(--PrimaryColor);
+}
 /* mobile veiw of max-width 375px == 23.4375em, 750 = 46.875em */
 @media (max-width: 23.4375em) {
   .fa-bars{
-    display: block;
+    right: 0%;
     z-index: 300;
   }
   nav{
@@ -158,23 +225,30 @@ header form{
     height: 100%;
     left: 0%;
   }
-  .fa-xmark{
+  .xmark{
     color: var(--PrimaryColor);
   }
   .logout{
     margin-left: 10%;
   }
-  .settings , .Log_out{
+  .settings , .Log_out, .notification{
     background-color: var(--PrimaryColor);
     color: var(--SecondColor);
     padding: 15px 20px;
     border: 1px solid transparent;
   }
-
+  .notification-wrap{
+    background-color: var(--PrimaryColor);
+    color: var(--SecondColor);
+    top: 15%;
+  }
+  .notification-form button{
+    color: var(--SecondColor);
+  }
 }
 @media (max-width: 50.4375em) {
   .fa-bars{
-    display: block;
+    right: 0%;
     z-index: 300;
   }
   nav{
@@ -244,16 +318,25 @@ header form{
     top: -2%;
     margin-bottom: 2%;
   }
-  .fa-xmark{
+  .xmark{
     color: var(--PrimaryColor);
   }
   .logout{
     margin-left: 10%;
   }
-  .settings , .Log_out{
+  .settings , .Log_out, .notification{
     background-color: var(--PrimaryColor);
     color: var(--SecondColor);
     padding: 15px 20px;
     border: 1px solid transparent;
+  }
+  .notification-wrap{
+    background-color: var(--PrimaryColor);
+    color: var(--SecondColor);
+    top: 15%;
+    left: 5%;
+  }
+  .notification-form button{
+    color: var(--SecondColor);
   }
 }

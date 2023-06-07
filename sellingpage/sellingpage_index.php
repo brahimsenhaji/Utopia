@@ -11,36 +11,16 @@ session_start();
     <link rel="stylesheet" href="./sellingpage_style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.js"></script>
-    
     <title>Document</title>
 </head>
 <body>
-    
-<header >
-            <a href="../Index.php" class="Logo"><img src="../Images/Logo3.png" alt="Logo"></a>
-            <nav class="Slide">
-                <ul>
-                    <div class="logo">
-                        <img src="../Images/Logo.png" alt="">
-                    </div>
-                    <li><a href="../Index.php">Home</a></li>
-                    <li><a href="#">Buy</a></li>
-                    <li><a href="../listingpage/listing_index.php">Sell</a></li>   
-                    <li><a href="../listingpage/listing_index.php">Rent</a></li>
-                    <li><a href="#">Help</a></li>
-                </ul>
-                <form action="../Includes/logout_inc.php" method="Get" class="logout" id="logout">
-                       <button name="settings" class="settings"><i class="fa-regular fa-user"></i></button>
-                       <button name="Log_out" class="Log_out"><i class="fa-solid fa-right-from-bracket"></i></i></button>
-                </form>        
-
-            </nav>
-            <i class="fa-solid fa-bars"></i>
-        </header>
-   <main>
+         <!--=======================INCKUDE NAV BAR=====================================-->
+<div class="goHome"> <i class="fa-solid fa-regular fa-arrow-left"></i> <a href="../Index.php">Go Back</a></div>
+        <!--==========================================================================-->
+<main>
     <section>
         
-    <form action="../Includes/iteminforamtion_inc.php" method="post" enctype="multipart/form-data" class="form" onsubmit="return validateForm(this)">
+     <form action="../Includes/iteminforamtion_inc.php" method="post" enctype="multipart/form-data" class="form" onsubmit="return validateForm(this)">
             <div class="input-wrap">
                 <label>Title *</label>
                 <input type="text" name="title" id="title" class="title" required>
@@ -158,8 +138,8 @@ session_start();
                 <button type="submit" class="upload-btn" name="upload-btn" id='upload-btn'>Upload</button>                
             </div>
         </form>
-    </section>
-   </main>
+     </section>
+</main>
 
 <script src="./sellingpage_script.js"></script>
 <script src="./error_script.js"></script>

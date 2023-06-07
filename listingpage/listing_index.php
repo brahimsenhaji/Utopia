@@ -11,33 +11,120 @@
     <link rel="stylesheet" href="./listing_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" type="image/x-icon" href="../Images/Logo.png" />
+    <link rel="stylesheet" href="../NavBar/Navbar_style.css">
     <title>Document</title>
 </head>
 <body>
+        <!--=======================INCKUDE NAV BAR=====================================-->
+               
 <header >
             <a href="../Index.php" class="Logo"><img src="../Images/Logo3.png" alt="Logo"></a>
             <nav class="Slide">
+                <img src="../Images/Logo_B.png" class="side_logo">
                 <ul>
-                    <div class="logo">
-                        <img src="../Images/Logo.png" alt="">
-                    </div>
                     <li><a href="../Index.php">Home</a></li>
-                    <li><a href="#">Buy</a></li>
-                    <li><a href="./listing_index.php">Sell</a></li>
-                    <li><a href="./listing_index.php">Rent</a></li>
+                    <li><a href="../buyingpage/buyingpage_index.php">Buy</a></li>
+                    <?php 
+                      if(isset($_SESSION['UserId'])){
+                       echo ' <li><a href="../listingpage/listing_index.php">Sell</a></li>';
+                      }
+                      else{
+                        echo ' <li><a href="../sign-in-up_page/sign_Index.php">Sell</a></li>';
+                      }
+                    ?>
+                    <li><a href="#">Rent</a></li>
                     <li><a href="#">Help</a></li>
                 </ul>
-                <form action="./Includes/logout_inc.php" method="Get" class="logout">
+                <form action="../Includes/logout_inc.php" method="Get" class="logout">
                     <?php 
                         if(isset($_SESSION['UserId']))
                         {
                           echo  '<button name="settings" class="settings"><i class="fa-regular fa-user"></i></button>';
-                          echo  '<button name="Log_out" class="Log_out"><i class="fa-solid fa-right-from-bracket"></i></i></button>';
+                          echo  "<div name='notification' class='notification'>";
+                              echo  "<i class='fa-solid fa-bell'></i>";
+                                echo "<div class = 'msg'>";
+                                    include '../Classes/db_PDS.class.php';
+                                    $sql = "SELECT * FROM messages WHERE receiver_id = ? AND is_read = 0";
+                                    $stmt = mysqli_stmt_init($conn);
+                            
+                                    if(!mysqli_stmt_prepare($stmt, $sql)){
+                                        header("Location: ./Myprofile/Myprofile_index.php?error=sqlstatementfaild");
+                                        exit();
+                                    }
+                                    else{
+                                        mysqli_stmt_bind_param($stmt, "i", $_SESSION['UserId']);
+                                        mysqli_stmt_execute($stmt);
+                            
+                                        $result = mysqli_stmt_get_result($stmt);
+                                        $unreadCount = mysqli_num_rows($result);
 
+                                            
+                                            if(isset($_GET['read_mgs'])){
+                                                $isread = $_GET['read_mgs'];
+                                                
+                                                $sql2 = "UPDATE messages SET is_read = 1 WHERE message_id = ?";
+                                                $stmt2 = mysqli_stmt_init($conn);
+
+                                                if(!mysqli_stmt_prepare($stmt2, $sql2)){
+                                                    header("Location: ./Myprofile/Myprofile_index.php?error=sqlstatementfaild");
+                                                    exit();
+                                                }else{
+                                                    mysqli_stmt_bind_param($stmt2, "i", $isread);
+                                                    mysqli_stmt_execute($stmt2);
+                                                    
+                                                }
+                                        }
+                                        echo $unreadCount;
+
+                                        mysqli_stmt_close($stmt);
+                                    }
+                                echo "</div>";
+                          echo   "</div>";
+                          echo  '<button name="Log_out" class="Log_out"><i class="fa-solid fa-right-from-bracket"></i></i></button>';
                         }
                         ?>
-                </form>        
-                <form action="." method="Get">
+                </form>
+                <?php 
+                    echo"<div class='notification-wrap'>";
+                      echo "<h1>Notification</he>";
+                        echo "<form action='' method='get' class = 'notification-form'>";
+                                        include '../Classes/db_PDS.class.php';
+                                
+                                        $sql = "SELECT * FROM messages WHERE receiver_id = ? AND is_read = 0";
+                                        $stmt = mysqli_stmt_init($conn);
+                                
+                                        if(!mysqli_stmt_prepare($stmt, $sql)){
+                                            header("Location: ./Myprofile/Myprofile_index.php?error=sqlstatementfaild");
+                                            exit();
+                                        }
+                                        else{
+                                            mysqli_stmt_bind_param($stmt, "i", $_SESSION['UserId']);
+                                            mysqli_stmt_execute($stmt);
+                                
+                                            $result = mysqli_stmt_get_result($stmt);
+                                            while($row = mysqli_fetch_assoc($result)){
+                                                $sql2 = "SELECT * FROM users WHERE user_id = ?;";
+                                                $stmt2 = mysqli_stmt_init($conn);
+
+                                                if(!mysqli_stmt_prepare($stmt2, $sql2)){
+                                                    header("Location: ./Myprofile/Myprofile_index.php?error=sqlstatementfaild");
+                                                    exit();
+                                                }else{
+                                                    mysqli_stmt_bind_param($stmt2, "i", $row['sender_id']);
+                                                    mysqli_stmt_execute($stmt2);
+
+                                                    $result2 = mysqli_stmt_get_result($stmt2);
+                                                        while($row2 = mysqli_fetch_assoc($result2)){
+                                                            echo "<button name = 'read_mgs' value = '{$row['message_id']}'>You've got a new message from : {$row2['user_name']}</button>";
+                                                        }
+                                                }
+                                            }
+                                            
+                                        }
+                        echo "</form>"; 
+                   echo "</div>";
+                ?>      
+                <form action="" method="Get">
                       <?php  
                         if(!isset($_SESSION['UserId'])){
                             echo '<button name="Sign_in" class="Log_in" value="Log">Sign in</button>' ;
@@ -55,6 +142,9 @@
             </nav>
             <i class="fa-solid fa-bars"></i>
         </header>
+
+
+        <!--==========================================================================-->
         <main>
             <div class="img1">
                 <img src="../Images/image12.png">
@@ -93,5 +183,6 @@
             </div>
         </main>
         <script src="./selling_index.js"></script>
+        <script src="../NavBar/Navbar_script.js"></script>
 </body>
 </html>
