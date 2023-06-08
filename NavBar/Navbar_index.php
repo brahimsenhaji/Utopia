@@ -14,8 +14,8 @@
                         echo ' <li><a href="sign-in-up_page/sign_Index.php">Sell</a></li>';
                       }
                     ?>
-                    <li><a href="./Chat/chat_index.php">Rent</a></li>
-                    <li><a href="#">Help</a></li>
+                    <li><a href="listingpage/listing_index.php">Rent</a></li>
+                    <li><a href="#help-page">Help</a></li>
                 </ul>
                 
                  <form action="./Includes/logout_inc.php" method="Get" class="logout">

@@ -2,17 +2,15 @@
 @import url('../NavBar/Navbar_style.css');
 body{
     background-color: var(--PrimaryColor) ;
-    overflow: hidden;
 }
 ::-webkit-scrollbar{
     width: 0;
-  }
+}
 main{
     position: absolute;
     width: 100%;
     height: 80vh;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
     bottom: 0%;
 }
@@ -75,6 +73,7 @@ main{
 }
 
 .properties{
+    position: relative;
     display: grid;
     gap: 10px;
     width: 45%;
@@ -163,4 +162,81 @@ main{
 
 .hide{
     display: none;
+}
+/* mobile veiw of max-width 375px == 23.4375em, 750 = 46.875em */
+@media (max-width: 23.4375em){
+    main{
+        position: absolute;
+        width: 100%;
+        height: 80vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        bottom: 0%;
+        padding: 0 10px;
+        gap: 10px;
+    }
+    .Filter{
+      width: 100%;
+      height: 40%;
+    }
+    .Filter form{
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 15px;
+        z-index: 100;
+        width: 100%;
+        
+    }
+    .input-wrap {
+        width: 28%;
+    }
+    .properties{
+        width: 100%;
+        border-bottom:1px solid var(--SecondColor) ;
+    }
+    .map{
+        width: 100%;
+        height: 30%;
+    }
+}
+@media (max-width: 50.4375em){
+    main{
+        position: absolute;
+        width: 100%;
+        height: 80vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        bottom: 0%;
+        padding: 0 10px;
+        gap: 10px;
+    }
+    .Filter{
+      width: 100%;
+      height: 40%;
+    }
+    .Filter form{
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 15px;
+        z-index: 100;
+        width: 100%;
+        
+    }
+    .input-wrap {
+        width: 28%;
+    }
+    .properties{
+        width: 100%;
+        border-bottom:1px solid var(--SecondColor) ;
+    }
+    .map{
+        width: 100%;
+        height: 30%;
+    }
 }

@@ -73,4 +73,5 @@ select {
     font-family: var(--Primaryfont);
     list-style: none;
     text-decoration: none;
+    scroll-behavior: smooth;
 }

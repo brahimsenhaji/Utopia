@@ -2,6 +2,7 @@
 
 body{
     overflow-x: hidden;
+    overflow-y: hidden;
     background-color: var(--SecondColor);
 }
 header{
@@ -98,17 +99,15 @@ header{
     color: var(--PrimaryColor);
     border: 1px solid var(--PrimaryColor);
 }
-footer{
-    width: 100%;
-    height: 20vh;
-    background-color: var(--SecondColor);
-    bottom: 0;
-}
+
 .showBox{
     display: block;
 }
 /* mobile veiw of max-width 375px == 23.4375em, 750 = 46.875em */
 @media (max-width: 23.4375em) {
+    body{
+        overflow-y: scroll;
+    }
     .main {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -142,6 +141,9 @@ footer{
     }
 }
 @media (max-width: 50.4375em) {
+    body{
+        overflow-y: scroll;
+    }
     .main {
         display: grid;
         grid-template-columns: repeat(1, 1fr);

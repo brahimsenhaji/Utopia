@@ -40,8 +40,15 @@
                         echo ' <li><a href="../sign-in-up_page/sign_Index.php">Sell</a></li>';
                       }
                     ?>
-                    <li><a href="#">Rent</a></li>
-                    <li><a href="#">Help</a></li>
+                     <?php 
+                      if(isset($_SESSION['UserId'])){
+                       echo ' <li><a href="../listingpage/listing_index.php">Rent</a></li>';
+                      }
+                      else{
+                        echo ' <li><a href="../sign-in-up_page/sign_Index.php">Rent</a></li>';
+                      }
+                    ?>
+                    <li><a href="../Index.php?#help-page">Help</a></li>
                 </ul>
                 <form action="../Includes/logout_inc.php" method="Get" class="logout">
                     <?php 
@@ -226,7 +233,7 @@
                         include '../Classes/db_PDS.class.php';
 
                         // prepare the SQL statement to select all properties
-                        $sql = "SELECT * FROM properties;";
+                        $sql = "SELECT * FROM properties ORDER BY created_at DESC;";
                         $result = mysqli_query($conn, $sql);
 
                         // check if any properties exist

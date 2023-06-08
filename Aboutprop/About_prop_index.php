@@ -33,8 +33,15 @@
                         echo ' <li><a href="../sign-in-up_page/sign_Index.php">Sell</a></li>';
                       }
                     ?>
-                    <li><a href="#">Rent</a></li>
-                    <li><a href="#">Help</a></li>
+                    <?php 
+                      if(isset($_SESSION['UserId'])){
+                       echo ' <li><a href="../listingpage/listing_index.php">Rent</a></li>';
+                      }
+                      else{
+                        echo ' <li><a href="../sign-in-up_page/sign_Index.php">Rent</a></li>';
+                      }
+                    ?>
+                    <li><a href="../Index.php?#help-page">Help</a></li>
                 </ul>
                 <form action="../Includes/logout_inc.php" method="Get" class="logout">
                     <?php 
@@ -241,14 +248,47 @@
     ?>
     <button name = 'contact-btn' class ='Contact-btn' onclick="showMesageBox()"><i class='fa-sharp fa-solid fa-message'></i>Contact</button>
     <?php 
-      include "../Chat/chat_index.php";
+    if(isset($_SESSION['UserId'])){
+        include "../Chat/chat_index.php";
+
+        echo "  <script>
+        function showMesageBox(){
+
+            let card = document.querySelector('#card');
+            card.classList.toggle('showBox');
+        }
+       </script>";
+    }
+    else{
+        echo "<div class = 'message'><h1>To contact the owner, you have to sign in.</h1></div>";
+
+        echo " <script>
+        function showMesageBox(){
+            let message = document.querySelector('.message');
+            message.classList.toggle('ShowMessage');
+        }
+        </script>";
+    }
+     
     ?>
-        <script>
-            function showMesageBox(){
-                let card = document.querySelector("#card");
-                card.classList.toggle("showBox");
-            }
-        </script>
+    <style>
+        .message{
+            position: absolute;
+            width: 350px;
+            text-align: center;
+            padding: 5px;
+            background-color: var(--PrimaryColor);
+            color: var(--SecondColor);
+            right: 5%;
+            top: 70%;
+            border: 1px solid var(--SecondColor);
+            display: none;
+            transition: 0.3s;
+        }
+        .ShowMessage{
+            display: block;
+        }
+    </style>
     <footer>
 
     </footer>

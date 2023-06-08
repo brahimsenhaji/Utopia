@@ -152,7 +152,7 @@
 
     </section>
 
-    <section class="help-page">
+    <section class="help-page" id="help-page">
         <div class="title">
             See how Utopia can help
         </div>
@@ -192,9 +192,9 @@
   
     
     <!--------------------------------------------------------------------------------------------------------->
-    <section class="About-Utopia">
+    <section class="About-Utopia" id="About-Utopia">
        
-        <h1>About Utopia</h1>
+        <h1 class="About-title">About Utopia</h1>
         <div class="About-text">
             <p>
                 Utopia is a website dedicated to helping people buy, sell, and rent homes. Whether you are a first-time homebuyer or a seasoned real estate investor, Utopia is your one-stop-shop for all your real estate needs. <br><br>
@@ -211,19 +211,17 @@
 
     <footer>
         <div class="footer-content">
-            <img src="./Images/Logo1.png" alt="">
-        </div>
-        <div class="footer-text">
+          <img src="./Images/Logo_B.png" class="footer-logo" alt="">
             <ul>
-                <li>Home</li>
-                <li>Sell</li>
-                <li>Buy</li>
-                <li>Rent</li>
-                <li>About</li>
-                <li>contact</li>
+               <a href="#"><li>Home</li></a>
+               <a href="./listingpage/listing_index.php"><li>Sell</li></a>
+               <a href="./buyingpage/buyingpage_index.php"><li>Buy</li></a>
+               <a href="./listingpage/listing_index.php"><li>Rent</li></a>
+               <a href="#About-Utopia"><li>About</li></a>
+               <a href="#help-page"><li>Help</li></a>
+               <a href=""><li>Contact</li></a>
             </ul>
-
-
+           <p class="copyright">Copyright © 2023 Utopia, All Rights Reserved.</p>
         </div>
     </footer>
   

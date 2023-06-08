@@ -48,19 +48,40 @@ let Log_in = document.querySelector(".Log_in");
 let Sign_in = document.querySelector(".Sign_in");
 
 window.onscroll = ()=>{
+  console.log(window.scrollY);
+  let Nearby_title = document.querySelector('.Nearby-title');
+  if(window.scrollY >= 226){
+    Nearby_title.style.opacity = "1";
+  }
+  let Nearby_container = document.querySelector('.Nearby-container');
+  if(window.scrollY >= 400){
+    Nearby_container.style.opacity = "1";
+  }
+
+  //=================================================================================
     let container = document.querySelector('.container');
-    if(window.scrollY >= 413){
+    if(window.scrollY >= 913){
         container.classList.add('active2');
     }
     //adding the bubble stye
     let video5 = document.querySelector('.video5');
-    if(window.scrollY < 950){
+    if(window.scrollY < 1500){
         video5.style.display = "none";
     }
     else{
         video5.style.display ="block";
     }
+ //===============================================================
+ let Sell = document.querySelector('.Sell');
+ if(window.scrollY >= 2050){
+  Sell.style.scale= "1";
+ }
+ //=====================================================================================================
 
+ let About_title = document.querySelector('.About-title');
+ if(window.scrollY >= 2250){
+  About_title.style.opacity="1";
+ }
 }
 
 let title = document.querySelector('.title');
@@ -85,3 +106,7 @@ menu.addEventListener('click',()=>{
 })
 
 
+let main_content = document.querySelector('.main-content');
+window.onload = ()=>{
+  main_content.classList.add("TransformMain");
+}
