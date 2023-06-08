@@ -137,8 +137,3 @@
             </nav>
             <i class="fa-solid fa-bars"></i>
         </header>
-        <?php
-        if(isset($_SESSION['UserId'])){
-            include "./Chat/chat_index.php";
-        }
-        ?>

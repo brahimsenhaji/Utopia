@@ -64,20 +64,21 @@
                                         $unreadCount = mysqli_num_rows($result);
 
                                             
-                                            if(isset($_GET['read_mgs'])){
-                                                $isread = $_GET['read_mgs'];
-                                                
-                                                $sql2 = "UPDATE messages SET is_read = 1 WHERE message_id = ?";
-                                                $stmt2 = mysqli_stmt_init($conn);
+                                        if(isset($_COOKIE['message_id'])){
+                                            $isread = $_COOKIE['message_id'];
+                                            $receiver_id = $_SESSION['UserId'];
 
-                                                if(!mysqli_stmt_prepare($stmt2, $sql2)){
-                                                    header("Location: ./Myprofile/Myprofile_index.php?error=sqlstatementfaild");
-                                                    exit();
-                                                }else{
-                                                    mysqli_stmt_bind_param($stmt2, "i", $isread);
-                                                    mysqli_stmt_execute($stmt2);
-                                                    
-                                                }
+                                            $sql2 = "UPDATE messages SET is_read = 1 WHERE message_id = ?";
+                                            $stmt2 = mysqli_stmt_init($conn);
+
+
+                                            if (!mysqli_stmt_prepare($stmt2, $sql2)) {
+                                                header("Location: ./Myprofile/Myprofile_index.php?error=sqlstatementfaild");
+                                                exit();
+                                            } else {
+                                                mysqli_stmt_bind_param($stmt2, "i", $isread);
+                                                mysqli_stmt_execute($stmt2);
+                                            }
                                         }
                                         echo $unreadCount;
 
@@ -92,7 +93,7 @@
                 <?php 
                     echo"<div class='notification-wrap'>";
                       echo "<h1>Notification</he>";
-                        echo "<form action='' method='get' class = 'notification-form'>";
+                        echo "<form action='../Chat_Page/chatPage_index.php' method='get' class = 'notification-form'>";
                                         include '../Classes/db_PDS.class.php';
                                 
                                         $sql = "SELECT * FROM messages WHERE receiver_id = ? AND is_read = 0";
@@ -120,10 +121,19 @@
 
                                                     $result2 = mysqli_stmt_get_result($stmt2);
                                                         while($row2 = mysqli_fetch_assoc($result2)){
-                                                            echo "<button name = 'read_mgs' value = '{$row['message_id']}'>You've got a new message from : {$row2['user_name']}</button>";
+                                                            echo "<button class='read_msg' name='user-id' data-message-id='{$row['message_id']}' value='{$row['sender_id']}'>You've got a new message from: {$row2['user_name']}</button>";
                                                         }
                                                 }
                                             }
+                                            echo "<script>
+                                            let read_msg = document.querySelectorAll('.read_msg');
+                                            read_msg.forEach(msg => {
+                                                msg.addEventListener('click', () => {
+                                                    let messageId = msg.getAttribute('data-message-id');
+                                                    document.cookie = 'message_id=' + messageId;
+                                                });
+                                            });
+                                        </script>";
                                             
                                         }
                         echo "</form>"; 

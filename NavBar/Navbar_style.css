@@ -70,14 +70,13 @@ header form{
   cursor: pointer;
 }
 .fa-bars{
-  position: relative;
   color: var(--SecondColor);
   font-size: 25px;
   width: 30px;
   height: 30px;
   text-align: center;
   cursor: pointer;
-  right: -100%;
+  display: none;
 }
 .logout{
   margin-left: 40%;
@@ -248,7 +247,7 @@ header form{
 }
 @media (max-width: 50.4375em) {
   .fa-bars{
-    right: 0%;
+    display: block;
     z-index: 300;
   }
   nav{

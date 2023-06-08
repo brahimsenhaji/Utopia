@@ -12,38 +12,57 @@ if (!isset($_SESSION)) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./chatPage_style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Document</title>
 </head>
 <body>
+
   <div class="Contacts">
+    <h1>Your Contacts</h1>
   <?php 
-            //==============================================Read messages===========================   
-              include '../Classes/db_PDS.class.php';   
+      echo "<form action='' method='get' class='chat-input'>";
+                          //==============================================Read messages===========================
+              include '../Classes/db_PDS.class.php';
+
               // Retrieve sender and receiver IDs
               $sender_id = $_GET['user-id'];
-
               $receiver_id = $_SESSION['UserId'];
 
-                // Retrieve messages
-                $sql = "SELECT * FROM messages WHERE (sender_id = ? AND receiver_id = ?) LIMIT 1;";
-                $stmt = mysqli_stmt_init($conn);
+              // Retrieve messages
+              $sql = "SELECT DISTINCT sender_id FROM messages WHERE sender_id != ?";
+              $stmt = mysqli_stmt_init($conn);
 
-                if (!mysqli_stmt_prepare($stmt, $sql)) {
-                    header("Location: ./Myprofile/Myprofile_index.php?error=sqlstatementfaild");
-                    exit();
-                } else {
-                    mysqli_stmt_bind_param($stmt, "ii", $sender_id, $receiver_id);
-                    mysqli_stmt_execute($stmt);
+              if (!mysqli_stmt_prepare($stmt, $sql)) {
+                  header("Location: ./Myprofile/Myprofile_index.php?error=sqlstatementfailed");
+                  exit();
+              } else {
+                mysqli_stmt_bind_param($stmt, "i", $receiver_id);
+                  mysqli_stmt_execute($stmt);
 
-                    $result = mysqli_stmt_get_result($stmt);
-                    
-                    while($row = mysqli_fetch_assoc($result)){
-                      echo "<li>{$row['sender_id']}</li>";
+                  $result = mysqli_stmt_get_result($stmt);
+
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $sql2 = "SELECT * FROM users WHERE user_id = ?";
+                    $stmt2 = mysqli_stmt_init($conn);
+
+                    if (!mysqli_stmt_prepare($stmt2, $sql2)) { // Fix: Use $stmt2 instead of $stmt
+                        header("Location: ./Myprofile/Myprofile_index.php?error=sqlstatementfailed");
+                        exit();
+                    } else {
+                        mysqli_stmt_bind_param($stmt2, "i", $row['sender_id']);
+                        mysqli_stmt_execute($stmt2);
+
+                        $result2 = mysqli_stmt_get_result($stmt2);
+
+                          while ($row2 = mysqli_fetch_assoc($result2)) {
+                           echo   "<button name = 'user-id' value = '{$row['sender_id']}' class = 'User-btn'>{$row2['user_name']}</button>";
+                          }
                     }
+                  }
+              }
+    echo "</form>";
+  ?>    
 
-                }
-            ?>    
   </div>
 <div class="card" id="card">
     <div class="chat-header">
@@ -106,7 +125,6 @@ if (!isset($_SESSION)) {
     <form action="" method="post" class="chat-input">
         <input type="text" class="message-input" name="message" placeholder="Type your message here">
         <button class="send-button" name="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
-        <input type="hidden" name="user-id" value="<?php echo $_POST['user-id']; ?>">
     </form>
     <?php 
         // ========================== send the message==============================
