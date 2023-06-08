@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" type="image/x-icon" href="../Images/Logo.png" />
     <link rel="stylesheet" href="../NavBar/Navbar_style.css">
-    <title>Document</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../Images/Logo_W.png" />
+    <title>Utopia-sell</title>
 </head>
 <body>
         <!--=======================INCKUDE NAV BAR=====================================-->

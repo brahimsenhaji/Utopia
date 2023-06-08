@@ -11,7 +11,8 @@ session_start();
     <link rel="stylesheet" href="./sellingpage_style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.js"></script>
-    <title>Document</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../Images/Logo_W.png" />
+    <title>Utopia</title>
 </head>
 <body>
          <!--=======================INCKUDE NAV BAR=====================================-->
@@ -52,7 +53,6 @@ session_start();
             <div id="error-message" class="error-message">Please add image.</div>
             <div class="images">
                 <div class="image-wrap" >
-
                 </div>
             </div>
             <div class="input-wrap" id="Disruption">

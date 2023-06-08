@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.min.js"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="./Images/Logo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="./Images/Logo_W.png" />
     <title>Utopia</title>
 </head>
 <body>

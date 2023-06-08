@@ -1,14 +1,4 @@
-let category = document.querySelector('.category');
-let Floors = document.querySelector('#Floors');
 
-category.addEventListener('click',()=>{
-    if(category.value == "Apartment"){
-        Floors.setAttribute('style',' display: none;');
-    }
-    else if(category.value == "House"){
-        Floors.setAttribute('style',' display: bolck;');
-    }
-})
 
 
 let selectImage = document.querySelector('.SelectImage');
