@@ -19,7 +19,7 @@ session_start();
  $userId = $_SESSION['UserId'];
 
 if(isset($_POST['upload-btn'])){
-    if(!empty($title) && !empty($category) && !empty($disruption) && !empty($floors) && !empty($rooms) && !empty($kitchen) && !empty($bathroom) && !empty($price) && !empty($city) && !empty($street_name) && !empty($house_number)){
+    if(!empty($title) && !empty($category) && !empty($disruption) && !empty($rooms) && !empty($kitchen) && !empty($bathroom) && !empty($price) && !empty($city) && !empty($street_name) && !empty($house_number)){
          // Insert property details into the database
     $sql = "INSERT INTO properties (user_id,title, category, floors, rooms, kitchen, bathroom, price, city, street_name, house_number,disruption,latitude,longitude) 
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
