@@ -106,7 +106,7 @@ menu.addEventListener('click',()=>{
 })
 
 
-let main_content = document.querySelector('.main-content');
-window.onload = ()=>{
-  main_content.classList.add("TransformMain");
-}
+
+
+
+

@@ -19,6 +19,10 @@
     <title>Utopia</title>
 </head>
 <body>
+    <div class="startup" value = "true">
+    <video src="./Videos/video8..mp4" type="video/mp4" autoplay loop muted plays-inline allow="autoplay" class="video8"></video>
+
+    </div>
     <video src="./Videos/video5.mp4" type="video/mp4" autoplay loop muted plays-inline allow="autoplay" class="video5"></video>
     <section class="Landing-Page">  
    
@@ -229,5 +233,6 @@
     <script src="./NavBar/Navbar_script.js"></script>
     <script src="./Slider_script.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./startUp_script.js"></script>
 </body>
 </html>
