@@ -1,14 +1,46 @@
 <?php 
   session_start();
+
+  include "../Classes/db_PDS.class.php";
+   if(isset($_SESSION['UserId'])){
+    $Uid = $_SESSION['UserId'];
+    $sql = "SELECT * FROM users where user_id = ?;";
+
+    $stmt = mysqli_stmt_init($conn);
+
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("Location: ./Myprofile/Myprofile_index.php?error=sqlstatementfaild");
+        exit();
+    }
+
+    else{
+        //Bind Param
+        
+        mysqli_stmt_bind_param($stmt, "s", $Uid);
+
+        //Execute the Prepared Statement inside database
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+
+        if($row = mysqli_fetch_assoc($result)){
+            $_SESSION['Uname'] = $row['user_name'];
+        }
+    }
+    
+ }
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Responsive sidebar || Learning Robo</title>
         <link rel="stylesheet" href="style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="./userpage_style.css">
+        <link rel="shortcut icon" type="image/x-icon" href="../Images/Logo_W.png" />
+
+        <title><?php echo $_SESSION['Uname']?></title>
+
     </head>
     <body>
         <div class="s-layout">
