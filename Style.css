@@ -24,6 +24,16 @@ body{
   position: absolute;
   width: 50%;
 }
+.startup-text{
+  position: absolute;
+  color: var(--SecondColor);
+  z-index: 100000;
+  font-size: 80px;
+  left: 40%;
+  top: 45%;
+  filter: blur(2px);
+}
+
 .Landing-Page{
   position: relative;
   width: 100%;
@@ -298,7 +308,7 @@ font-weight: bold;
   opacity: 1;
 }
 .container {
-  position: relative;
+    position: relative;
     width: 100%;
     height: max-content;
     padding:  2% 10%;

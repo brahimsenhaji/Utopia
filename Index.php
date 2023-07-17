@@ -20,8 +20,10 @@
 </head>
 <body>
     <div class="startup" value = "true">
-    <video src="./Videos/video8..mp4" type="video/mp4" autoplay loop muted plays-inline allow="autoplay" class="video8"></video>
-
+     <video src="./Videos/video8..mp4" type="video/mp4" autoplay loop muted plays-inline allow="autoplay" class="video8"></video>
+        <div class="startup-text">
+            UTOPIA
+        </div>
     </div>
     <video src="./Videos/video5.mp4" type="video/mp4" autoplay loop muted plays-inline allow="autoplay" class="video5"></video>
     <section class="Landing-Page">  
@@ -190,8 +192,21 @@
     <section class="Sell">
          <p>You're In Good Hands</p>
          <h1>SELL YOUR PROPERTY THROUGH Utopia</h1>
-         <button>SELL NOW</button>
+         <form action="" method="post">
+             <button name="Sell-btn">SELL NOW</button>
+         </form>
     </section>
+    <?php 
+            if(isset($_POST['Sell-btn'])){
+                if(isset($_SESSION['UserId'])){
+                    header("Location: listingpage/listing_index.php");
+                }
+                else{
+                    header("Location: sign-in-up_page/sign_Index.php");
+                }
+            }
+        
+    ?>
     <!--------------------------------------------------------------------------------------------------------->
   
     

@@ -15,5 +15,5 @@ window.onload = ()=>{
       }
 
     startup.style.display = "none";
-   },7000);
+   },3000);
 }
